@@ -6,3 +6,7 @@ Uwagi:
 - programuj do interfejsów, nie wiąż klas do konkretnych klas, tylko do interfejsów
 - zwróć uwage na konwencje nazewnicze w Javie https://www.oracle.com/java/technologies/javase/codeconventions-namingconventions.html
 - unikaj wszelkich instrukcji skoku typu: goto
+
+
+TODO
+- dodaj persistent DAO, które będzie zapisywać dane w bazie MySQL
