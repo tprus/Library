@@ -18,7 +18,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>works.buddy.Main</mainClass>
+                  <mainClass>works.buddy.library.Main</mainClass>
                 </transformer>
               </transformers>
             </configuration>
