@@ -1,5 +1,8 @@
 package works.buddy.library;
 
+import works.buddy.library.dao.MemoryBookDAO;
+import works.buddy.library.model.Book;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

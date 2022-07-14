@@ -1,4 +1,4 @@
-package works.buddy.library;
+package works.buddy.library.model;
 
 public class Book {
 
