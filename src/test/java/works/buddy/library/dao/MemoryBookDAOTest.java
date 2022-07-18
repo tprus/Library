@@ -41,7 +41,6 @@ public class MemoryBookDAOTest {
     public void saveTestWithNullBook(){
         MemoryBookDAO tested =  new MemoryBookDAO(new ArrayList<>() );
         tested.save(null);
-        Book actual = tested.getBooks().iterator().next();
-        assertEquals(0,tested.getBooks().size());
+        assertEquals("null shouldn't be added to collection",0,tested.getBooks().size());
     }
 }

@@ -2,6 +2,7 @@ package works.buddy.library.dao;
 
 import works.buddy.library.model.Book;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class MemoryBookDAO implements BookDAO {
@@ -10,11 +11,14 @@ public class MemoryBookDAO implements BookDAO {
 
     public MemoryBookDAO(Collection<Book> books) {
         this.books = books;
+        if (books == null)
+            this.books = new ArrayList<Book>();
     }
 
     @Override
     public void save(Book book) {
-        this.books.add(book);
+        if (book != null)
+            this.books.add(book);
     }
 
     @Override
