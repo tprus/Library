@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MemoryBookDAOTest {
-// autor > 5 znaków
+    // autor > 5 znaków
     // getBooks zwraca rekordy w kolejności alfabetycznej po autorach
     //rekordy się nie powtarzają
     
@@ -29,7 +29,7 @@ public class MemoryBookDAOTest {
     }
 
     @Test
-    public void creationWithLoad() {
+    public void createWithLoad() {
         this.bookDAO = new MemoryBookDAO(SAMPLE_BOOKS);
         assertEquals(1, bookDAO.getBooks().size());
     }
@@ -40,7 +40,7 @@ public class MemoryBookDAOTest {
     }
 
     @Test
-    public void getBooks() {
+    public void getSomeBooks() {
         MemoryBookDAO bookDAO = new MemoryBookDAO(SAMPLE_BOOKS);
         Collection<Book> books = bookDAO.getBooks();
         assertNotNull(books);
