@@ -10,9 +10,10 @@ public interface LibraryFrontend {
 
     String getResponse();
 
-    void askAuthor();
+    void askAuthorFirstName();
+    void askAuthorLastName();
 
-    void askName();
+    void askBookName();
     void askId();
 
     void listBooks(Collection<Book> books);

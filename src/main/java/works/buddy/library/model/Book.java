@@ -7,9 +7,9 @@ public class Book{
 
     private String name;
 
-    private String author;
+    private Author author;
 
-    public Book(Integer id, String name, String author) {
+    public Book(Integer id, String name, Author author) {
         this.name = name;
         this.author = author;
         this.id = id;
@@ -40,7 +40,7 @@ public class Book{
         return name;
     }
 
-    public String getAuthor() {
+    public Author getAuthor() {
         return author;
     }
 }
