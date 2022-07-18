@@ -1,11 +1,10 @@
 package works.buddy.library.model;
 
 import java.util.Objects;
-import java.util.Random;
-import java.util.UUID;
 
 public class Book implements Comparable<Book>{
     private Integer id;
+
     private String name;
 
     private String author;
@@ -15,12 +14,19 @@ public class Book implements Comparable<Book>{
         this.author = author;
         this.id = id;
     }
-    public Integer getId(){return id;}
+
+    public Integer getId() {
+        return id;
+    }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Book book = (Book) o;
         return id.equals(book.id);
     }
