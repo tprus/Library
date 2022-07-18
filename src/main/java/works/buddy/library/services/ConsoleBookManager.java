@@ -5,7 +5,6 @@ import works.buddy.library.model.Book;
 import works.buddy.library.ui.LibraryFrontend;
 
 public class ConsoleBookManager {
-
     private BookDAO bookDAO;
 
     private LibraryFrontend libraryFrontend;
@@ -46,9 +45,11 @@ public class ConsoleBookManager {
     }
 
     private void addBook() {
+        libraryFrontend.askId();
+        Integer id = Integer.valueOf(getResponse());
         libraryFrontend.askName();
         String name = getResponse();
         libraryFrontend.askAuthor();
-        bookDAO.save(new Book(name, getResponse()));
+        bookDAO.save(new Book(id, name, getResponse()));
     }
 }

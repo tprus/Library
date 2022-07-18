@@ -31,14 +31,16 @@ public class ConsoleLibraryFrontend implements LibraryFrontend {
     }
 
     @Override
-    public void askName() {
-        System.out.println("Name: ");
-    }
+    public void askName() { System.out.println("Name: "); }
+
+    @Override
+    public void askId() { System.out.println("ID "); }
+
 
     @Override
     public void listBooks(Collection<Book> books) {
         for (Book book : books) {
-            System.out.println("Name: " + book.getName() + ", Author: " + book.getAuthor());
+            System.out.println("ID: " + book.getId() + ", Name: " + book.getName() + ", Author: " + book.getAuthor());
         }
     }
 

@@ -13,6 +13,7 @@ public interface LibraryFrontend {
     void askAuthor();
 
     void askName();
+    void askId();
 
     void listBooks(Collection<Book> books);
 
