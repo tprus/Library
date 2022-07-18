@@ -29,7 +29,7 @@ public class MemoryBookDAOTest {
     }
 
     @Test
-    public void creationWithLoad() {
+    public void creationWithLoad555() {
         this.bookDAO = new MemoryBookDAO(SAMPLE_BOOKS);
         assertEquals(1, bookDAO.getBooks().size());
     }
@@ -40,7 +40,7 @@ public class MemoryBookDAOTest {
     }
 
     @Test
-    public void getBooks() {
+    public void getBookkkks() {
         MemoryBookDAO bookDAO = new MemoryBookDAO(SAMPLE_BOOKS);
         Collection<Book> books = bookDAO.getBooks();
         assertNotNull(books);
