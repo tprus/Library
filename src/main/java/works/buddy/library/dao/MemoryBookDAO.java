@@ -14,8 +14,6 @@ public class MemoryBookDAO implements BookDAO {
             throw new IllegalArgumentException("Parameter book cannot be null");
         }
         this.books = books;
-        if (books == null)
-            this.books = new ArrayList<Book>();
     }
 
     @Override

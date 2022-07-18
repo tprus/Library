@@ -56,4 +56,12 @@ public class MemoryBookDAOTest {
         assertEquals(SAMPLE_NAME, book.getName());
         assertEquals(SAMPLE_AUTHOR, book.getAuthor());
     }
+    @Test
+    public void saveThrowingErrorWhenAuthorTooShort()
+    {
+        MemoryBookDAO bookDAO = new MemoryBookDAO(new ArrayList<>());
+        bookDAO.save(new Book(SAMPLE_NAME, ""));
+        Book book = bookDAO.getBooks().iterator().next();
+        assertTrue(book.getAuthor().length() >= 5);
+    }
 }
