@@ -6,13 +6,14 @@ import works.buddy.library.model.Book;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MemoryBookDAOTest {
 
-    // autor > 5 znaków
+    // autor > 5 znaków -- wykonane
     // getBooks zwraca rekordy w kolejności alfabetycznej po autorach
     // rekordy się nie powtarzają
 
@@ -23,7 +24,7 @@ public class MemoryBookDAOTest {
 
     private static final String SAMPLE_AUTHOR = "Author";
 
-    private static final List<Book> SAMPLE_BOOKS = new ArrayList<>(List.of(new Book(SAMPLE_NAME, SAMPLE_AUTHOR)));
+    private static final Collection<Book> SAMPLE_BOOKS = new HashSet<>(List.of(new Book(SAMPLE_NAME, SAMPLE_AUTHOR)));
 
     public static final String TOO_LONG_AUTHOR = "It is a long established fact that a reader will be distracted by the readable content of a page when";
 
@@ -31,7 +32,7 @@ public class MemoryBookDAOTest {
 
     @Before
     public void setUp() {
-        this.bookDAO = new MemoryBookDAO(new ArrayList<>());
+        this.bookDAO = new MemoryBookDAO(new HashSet<>());
     }
 
     @Test

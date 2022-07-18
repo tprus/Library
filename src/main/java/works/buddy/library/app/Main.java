@@ -5,13 +5,11 @@ import works.buddy.library.model.Book;
 import works.buddy.library.services.ConsoleBookManager;
 import works.buddy.library.ui.ConsoleLibraryFrontend;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
-    private static final List<Book> SAMPLE_BOOKS = new ArrayList<>(
+    private static final Collection<Book> SAMPLE_BOOKS = new HashSet<>(
             List.of(new Book("1984", "Scott Chacon and Ben Straub"), new Book("Thinking in Java", "Bruce Eckel")));
 
     public static void main(String[] args) {
