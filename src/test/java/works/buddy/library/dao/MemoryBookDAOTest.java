@@ -16,6 +16,9 @@ public class MemoryBookDAOTest {
     // getBooks zwraca rekordy w kolejności alfabetycznej po autorach
     // rekordy się nie powtarzają
 
+    private static final int MIN_AUTHOR_NAME = 5;
+
+    private static final int MAX_AUTHOR_NAME = 100;
     private static final String SAMPLE_NAME = "Name";
 
     private static final String SAMPLE_AUTHOR = "Author";
@@ -63,12 +66,12 @@ public class MemoryBookDAOTest {
     @Test
     public void saveThrowingErrorWhenAuthorTooShort() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(SAMPLE_NAME, "")));
-        assertEquals("Author name cannot be shorter than 5 characters", thrown.getMessage());
+        assertEquals(String.format("Author name cannot be shorter than %d characters", MIN_AUTHOR_NAME), thrown.getMessage());
     }
 
     @Test
     public void saveThrowingErrorWhenAuthorTooLong() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(SAMPLE_NAME, TOO_LONG_AUTHOR)));
-        assertEquals("Author name cannot be longer than 100 characters", thrown.getMessage());
+        assertEquals(String.format("Author name cannot be longer than %d characters", MAX_AUTHOR_NAME), thrown.getMessage());
     }
 }
