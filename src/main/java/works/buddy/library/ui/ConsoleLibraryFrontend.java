@@ -26,12 +26,14 @@ public class ConsoleLibraryFrontend implements LibraryFrontend {
     }
 
     @Override
-    public void askAuthor() {
-        System.out.println("Author: ");
+    public void askAuthorFirstName() {
+        System.out.println("Authors first name: ");
+    }
+    public void askAuthorLastName() {  System.out.println("Authors last name: ");
     }
 
     @Override
-    public void askName() { System.out.println("Name: "); }
+    public void askBookName() { System.out.println("Name: "); }
 
     @Override
     public void askId() { System.out.println("ID "); }
