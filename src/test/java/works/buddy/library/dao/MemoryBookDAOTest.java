@@ -15,7 +15,7 @@ public class MemoryBookDAOTest {
 
     // autor > 5 znaków -- wykonane
     // getBooks zwraca rekordy w kolejności alfabetycznej po autorach
-    // rekordy się nie powtarzają
+    // rekordy się nie powtarzają -- wykonane
 
     private static final int MIN_AUTHOR_NAME = 5;
 
@@ -77,9 +77,9 @@ public class MemoryBookDAOTest {
     }
 
     @Test
-    public void addTwoSameBooks(){
+    public void saveTwoSameBooks(){
         bookDAO.save(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR));
-        Book book1 = bookDAO.getBooks().iterator().next();
-        assertNotEquals(book1 ,new Book(2, SAMPLE_NAME, SAMPLE_AUTHOR));
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR)));
+        assertEquals("Book with this id already exists", thrown.getMessage());
     }
 }

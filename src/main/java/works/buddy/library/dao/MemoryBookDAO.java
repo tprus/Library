@@ -2,6 +2,7 @@ package works.buddy.library.dao;
 
 import works.buddy.library.model.Book;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class MemoryBookDAO implements BookDAO {
@@ -32,11 +33,15 @@ public class MemoryBookDAO implements BookDAO {
         if (length > MAX_AUTHOR_NAME) {
             throw new IllegalArgumentException(String.format("Author name cannot be longer than %d characters", MAX_AUTHOR_NAME));
         }
+        if (books.contains(book)){
+            throw new IllegalArgumentException("Book with this id already exists");
+        }
         this.books.add(book);
     }
 
     @Override
     public Collection<Book> getBooks() {
+        //TODO ArrayList sortedBooks = (ArrayList) books;
         return books;
     }
 }
