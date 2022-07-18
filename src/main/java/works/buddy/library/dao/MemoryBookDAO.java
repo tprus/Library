@@ -5,6 +5,7 @@ import works.buddy.library.model.Book;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class MemoryBookDAO implements BookDAO {
 
@@ -43,7 +44,18 @@ public class MemoryBookDAO implements BookDAO {
     @Override
     public Collection<Book> getBooks() {
         ArrayList<Book> sortedBooks = new ArrayList<>(books);
-        Collections.sort(sortedBooks);
+        Collections.sort(sortedBooks, new Comparator<Book>() {
+            @Override
+            public int compare(Book o1, Book o2) {
+                if (o1.getAuthor().compareTo(o2.getAuthor()) == 0 ){ return 0;}
+                if (o1.getAuthor().compareTo(o2.getAuthor()) < 0) {
+                    return -1;
+                }
+                else {
+                    return 1;
+                }
+            }
+        });
         return sortedBooks;
     }
 }

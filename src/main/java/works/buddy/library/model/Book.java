@@ -2,7 +2,7 @@ package works.buddy.library.model;
 
 import java.util.Objects;
 
-public class Book implements Comparable<Book>{
+public class Book{
     private Integer id;
 
     private String name;
@@ -42,16 +42,5 @@ public class Book implements Comparable<Book>{
 
     public String getAuthor() {
         return author;
-    }
-
-    @Override
-    public int compareTo(Book o) {
-        if (author.compareTo(o.getAuthor()) == 0 ){ return 0;}
-        if (author.compareTo(o.getAuthor()) < 0) {
-            return -1;
-        }
-        else {
-            return 1;
-        }
     }
 }

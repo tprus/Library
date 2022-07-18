@@ -10,9 +10,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MemoryBookDAOTest {
 
-    // autor > 5 znaków -- wykonane
-    // getBooks zwraca rekordy w kolejności alfabetycznej po autorach
-    // rekordy się nie powtarzają -- wykonane
+    // autor > 5 znaków                                                 -- wykonane
+    // getBooks zwraca rekordy w kolejności alfabetycznej po autorach   -- wykonane
+    // rekordy się nie powtarzają                                       -- wykonane
+    // comparator w metodzie sortującej                                 -- wykonane
+    // upiększyć test sortowania                                        -- wykonane
+    // TODO Zamienić Autora na encję
 
     private static final int MIN_AUTHOR_NAME = 5;
 
@@ -20,6 +23,8 @@ public class MemoryBookDAOTest {
     private static final String SAMPLE_NAME = "Name";
 
     private static final String SAMPLE_AUTHOR = "Author";
+    private static final String SAMPLE_AUTHOR2 = "Barney Stinson";
+    private static final String SAMPLE_AUTHOR3 = "Jordan Peterson";
 
     private static final Collection<Book> SAMPLE_BOOKS = new HashSet<>(List.of(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR)));
 
@@ -82,12 +87,12 @@ public class MemoryBookDAOTest {
 
     @Test
     public void getSortedBooks(){
-        bookDAO.save(new Book(1, SAMPLE_NAME, "Decaa"));
-        bookDAO.save(new Book(2, SAMPLE_NAME, "Aaaaaa"));
-        bookDAO.save(new Book(3, SAMPLE_NAME, "Xyzaaa"));
+        bookDAO.save(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR3));
+        bookDAO.save(new Book(2, SAMPLE_NAME, SAMPLE_AUTHOR2));
+        bookDAO.save(new Book(3, SAMPLE_NAME, SAMPLE_AUTHOR));
         Iterator<Book> iterator = bookDAO.getBooks().iterator();
-        assertEquals("Aaaaaa", iterator.next().getAuthor());
-        assertEquals("Decaa", iterator.next().getAuthor());
-        assertEquals("Xyzaaa", iterator.next().getAuthor());
+        assertEquals(SAMPLE_AUTHOR, iterator.next().getAuthor());
+        assertEquals(SAMPLE_AUTHOR2, iterator.next().getAuthor());
+        assertEquals(SAMPLE_AUTHOR3, iterator.next().getAuthor());
     }
 }
