@@ -42,7 +42,7 @@ public class MemoryBookDAO implements BookDAO {
 
     @Override
     public Collection<Book> getBooks() {
-        ArrayList<Book> sortedBooks = new ArrayList<Book>(books);
+        ArrayList<Book> sortedBooks = new ArrayList<>(books);
         Collections.sort(sortedBooks);
         return sortedBooks;
     }

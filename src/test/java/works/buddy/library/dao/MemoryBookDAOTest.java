@@ -4,10 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import works.buddy.library.model.Book;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -81,5 +78,16 @@ public class MemoryBookDAOTest {
         bookDAO.save(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR));
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR)));
         assertEquals("Book with this id already exists", thrown.getMessage());
+    }
+
+    @Test
+    public void getSortedBooks(){
+        bookDAO.save(new Book(1, SAMPLE_NAME, "Decaa"));
+        bookDAO.save(new Book(2, SAMPLE_NAME, "Aaaaaa"));
+        bookDAO.save(new Book(3, SAMPLE_NAME, "Xyzaaa"));
+        Iterator<Book> iterator = bookDAO.getBooks().iterator();
+        assertEquals("Aaaaaa", iterator.next().getAuthor());
+        assertEquals("Decaa", iterator.next().getAuthor());
+        assertEquals("Xyzaaa", iterator.next().getAuthor());
     }
 }
