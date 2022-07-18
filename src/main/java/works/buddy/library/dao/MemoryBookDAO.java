@@ -17,7 +17,8 @@ public class MemoryBookDAO implements BookDAO {
 
     @Override
     public void save(Book book) {
-        if (book != null) {
+        if ( book.getAuthor().length() < 5 ) {throw new IllegalArgumentException("Parameter cannot be shorter than 5 characters");}
+        if (book != null ) {
             this.books.add(book);
         }
     }

@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MemoryBookDAOTest {
     // autor > 5 znaków
     // getBooks zwraca rekordy w kolejności alfabetycznej po autorach
-    //rekordy się nie powtarzają
+    // rekordy się nie powtarzają
     
     private static final String SAMPLE_NAME = "Name";
 
@@ -60,8 +60,6 @@ public class MemoryBookDAOTest {
     public void saveThrowingErrorWhenAuthorTooShort()
     {
         MemoryBookDAO bookDAO = new MemoryBookDAO(new ArrayList<>());
-        bookDAO.save(new Book(SAMPLE_NAME, ""));
-        Book book = bookDAO.getBooks().iterator().next();
-        assertTrue(book.getAuthor().length() >= 5);
+        assertThrows(IllegalArgumentException.class ,() -> bookDAO.save(new Book(SAMPLE_NAME, "")), "Parameter cannot be shorter than 5 characters" );
     }
 }
