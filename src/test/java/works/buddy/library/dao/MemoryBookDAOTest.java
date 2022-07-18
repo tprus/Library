@@ -11,7 +11,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class MemoryBookDAOTest {
-
+// autor > 5 znaków
+    // getBooks zwraca rekordy w kolejności alfabetycznej po autorach
+    //rekordy się nie powtarzają
+    
     private static final String SAMPLE_NAME = "Name";
 
     private static final String SAMPLE_AUTHOR = "Author";
