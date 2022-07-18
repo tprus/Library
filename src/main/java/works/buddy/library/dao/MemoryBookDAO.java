@@ -10,6 +10,9 @@ public class MemoryBookDAO implements BookDAO {
     private Collection<Book> books;
 
     public MemoryBookDAO(Collection<Book> books) {
+        if(books == null) {
+            throw new IllegalArgumentException("Parameter book cannot be null");
+        }
         this.books = books;
         if (books == null)
             this.books = new ArrayList<Book>();

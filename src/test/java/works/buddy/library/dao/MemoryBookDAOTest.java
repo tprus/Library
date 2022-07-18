@@ -1,46 +1,56 @@
 package works.buddy.library.dao;
 
-import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 import works.buddy.library.model.Book;
 
-import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static org.testng.AssertJUnit.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MemoryBookDAOTest {
-    private static final List<Book> SAMPLE_BOOKS = new ArrayList<>(
-            List.of(new Book("1984", "Scott Chacon and Ben Straub"), new Book("Thinking in Java", "Bruce Eckel")));
 
+    private static final String SAMPLE_NAME = "Name";
 
-    @Test
-    public void getBooksTest(){
-        MemoryBookDAO tested =  new MemoryBookDAO(SAMPLE_BOOKS);
-        assertEquals("Collections should match", SAMPLE_BOOKS, tested.getBooks());
+    private static final String SAMPLE_AUTHOR = "Author";
+
+    private static final List<Book> SAMPLE_BOOKS = new ArrayList<>(List.of(new Book(SAMPLE_NAME, SAMPLE_AUTHOR)));
+
+    private BookDAO bookDAO;
+
+    @BeforeEach
+    public void setUp() {
+        this.bookDAO = new MemoryBookDAO(new ArrayList<>());
     }
 
     @Test
-    public void getBooksWithNullConstructorTest(){
-        MemoryBookDAO tested =  new MemoryBookDAO(null);
-        assertEquals("we shouldn't have a null object as a collection", new ArrayList<Book>(), tested.getBooks());
+    public void creationWithLoad() {
+        this.bookDAO = new MemoryBookDAO(SAMPLE_BOOKS);
+        assertEquals(1, bookDAO.getBooks().size());
     }
 
     @Test
-    public void saveTest(){
-        Book expected = new Book("Jakaś nazwa", "Jakiś autor");
-        MemoryBookDAO tested =  new MemoryBookDAO(new ArrayList<>() );
-        tested.save(expected);
-        Book actual = tested.getBooks().iterator().next();
-        assertEquals(1,tested.getBooks().size());
-        assertEquals(expected, actual);
+    public void creationThrowingErrorWhenNull() {
+        assertThrows(IllegalArgumentException.class, () -> new MemoryBookDAO(null), "Parameter book cannot be null");
     }
+
     @Test
-    public void saveTestWithNullBook(){
-        MemoryBookDAO tested =  new MemoryBookDAO(new ArrayList<>() );
-        tested.save(null);
-        assertEquals("null shouldn't be added to collection",0,tested.getBooks().size());
+    public void getBooks() {
+        MemoryBookDAO bookDAO = new MemoryBookDAO(SAMPLE_BOOKS);
+        Collection<Book> books = bookDAO.getBooks();
+        assertNotNull(books);
+        assertEquals(1, books.size());
+    }
+
+    @Test
+    public void save() {
+        MemoryBookDAO bookDAO = new MemoryBookDAO(new ArrayList<>());
+        bookDAO.save(new Book(SAMPLE_NAME, SAMPLE_AUTHOR));
+        assertEquals(1, bookDAO.getBooks().size());
+        Book book = bookDAO.getBooks().iterator().next();
+        assertEquals(SAMPLE_NAME, book.getName());
+        assertEquals(SAMPLE_AUTHOR, book.getAuthor());
     }
 }
