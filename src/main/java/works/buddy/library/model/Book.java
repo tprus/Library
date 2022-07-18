@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 
-public class Book {
+public class Book implements Comparable<Book>{
     private Integer id;
     private String name;
 
@@ -36,5 +36,16 @@ public class Book {
 
     public String getAuthor() {
         return author;
+    }
+
+    @Override
+    public int compareTo(Book o) {
+        if (author.compareTo(o.getAuthor()) == 0 ){ return 0;}
+        if (author.compareTo(o.getAuthor()) < 0) {
+            return -1;
+        }
+        else {
+            return 1;
+        }
     }
 }

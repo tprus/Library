@@ -4,6 +4,7 @@ import works.buddy.library.model.Book;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 public class MemoryBookDAO implements BookDAO {
 
@@ -41,7 +42,8 @@ public class MemoryBookDAO implements BookDAO {
 
     @Override
     public Collection<Book> getBooks() {
-        //TODO ArrayList sortedBooks = (ArrayList) books;
-        return books;
+        ArrayList<Book> sortedBooks = new ArrayList<Book>(books);
+        Collections.sort(sortedBooks);
+        return sortedBooks;
     }
 }
