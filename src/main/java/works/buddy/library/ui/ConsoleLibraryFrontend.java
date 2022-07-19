@@ -42,7 +42,7 @@ public class ConsoleLibraryFrontend implements LibraryFrontend {
     @Override
     public void listBooks(Collection<Book> books) {
         for (Book book : books) {
-            System.out.println("ID: " + book.getId() + ", Name: " + book.getName() + ", Author: " + book.getAuthor());
+            System.out.println("ID: " + book.getId() + ", Name: " + book.getTitle() + ", Author: " + book.getAuthor());
         }
     }
 

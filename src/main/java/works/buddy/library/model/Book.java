@@ -2,17 +2,18 @@ package works.buddy.library.model;
 
 import java.util.Objects;
 
-public class Book{
+public class Book {
+
     private Integer id;
 
-    private String name;
+    private String title;
 
     private Author author;
 
-    public Book(Integer id, String name, Author author) {
-        this.name = name;
-        this.author = author;
+    public Book(Integer id, String title, Author author) {
         this.id = id;
+        this.title = title;
+        this.author = author;
     }
 
     public Integer getId() {
@@ -36,8 +37,8 @@ public class Book{
         return Objects.hash(id);
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public Author getAuthor() {

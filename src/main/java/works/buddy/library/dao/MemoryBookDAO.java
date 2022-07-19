@@ -5,14 +5,12 @@ import works.buddy.library.model.Book;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class MemoryBookDAO implements BookDAO {
 
-    private static final int MIN_AUTHOR_NAME = 5;
+    private static final int MIN_NAME_LENGTH = 5;
 
-    private static final int MAX_AUTHOR_NAME = 100;
+    private static final int MAX_NAME_LENGTH = 100;
 
     private Collection<Book> books;
 
@@ -22,48 +20,48 @@ public class MemoryBookDAO implements BookDAO {
         }
         this.books = books;
     }
+
     @Override
     public void save(Book book) {
-        Author author = book.getAuthor();
-        if(author == null) {
-            throw new IllegalArgumentException("Author name cannot be null");
-        }
-        int lastNameLength = author.getLastName().length();
-        int firstNameLength = author.getFirstName().length();
-        int bookNameLength = book.getName().length();
-        if (lastNameLength < MIN_AUTHOR_NAME || firstNameLength < MIN_AUTHOR_NAME) {
-            throw new IllegalArgumentException(String.format("Author name cannot be shorter than %d characters", MIN_AUTHOR_NAME));
-        }
-        if (lastNameLength > MAX_AUTHOR_NAME || firstNameLength > MAX_AUTHOR_NAME) {
-            throw new IllegalArgumentException(String.format("Author name cannot be longer than %d characters", MAX_AUTHOR_NAME));
-        }
-        if (bookNameLength < MIN_AUTHOR_NAME) {
-            throw new IllegalArgumentException(String.format("Book name cannot be shorter than %d characters", MIN_AUTHOR_NAME));
-        }
-        if (bookNameLength > MAX_AUTHOR_NAME ) {
-            throw new IllegalArgumentException(String.format("Book name cannot be longer than %d characters", MAX_AUTHOR_NAME));
-        }
-        if (books.contains(book)){
+        validate(book);
+        this.books.add(book);
+    }
+
+    private void validate(Book book) {
+        validateNotNull(book.getId(), "Id");
+        if (books.contains(book)) {
             throw new IllegalArgumentException("Book with this id already exists");
         }
-        this.books.add(book);
+        validateName(book.getTitle(), "Title");
+        Author author = book.getAuthor();
+        if (author == null) {
+            throw new IllegalArgumentException("Author cannot be null");
+        }
+        validateName(author.getFirstName(), "Author first name");
+        validateName(author.getLastName(), "Author last name");
+    }
+
+    private void validateName(String value, String fieldName) {
+        validateNotNull(value, fieldName);
+        int length = value.length();
+        if (length < MIN_NAME_LENGTH) {
+            throw new IllegalArgumentException(String.format("%s cannot be shorter than %d characters", fieldName, MIN_NAME_LENGTH));
+        }
+        if (length > MAX_NAME_LENGTH) {
+            throw new IllegalArgumentException(String.format("%s cannot be longer than %d characters", fieldName, MAX_NAME_LENGTH));
+        }
+    }
+
+    private void validateNotNull(Object value, String fieldName) {
+        if(value == null) {
+            throw new IllegalArgumentException(String.format("%s is required", fieldName));
+        }
     }
 
     @Override
     public Collection<Book> getBooks() {
         ArrayList<Book> sortedBooks = new ArrayList<>(books);
-        Collections.sort(sortedBooks, new Comparator<Book>() {
-            @Override
-            public int compare(Book o1, Book o2) {
-                if (o1.getAuthor().getLastName().compareTo(o2.getAuthor().getLastName()) == 0 ){ return 0;}
-                if (o1.getAuthor().getLastName().compareTo(o2.getAuthor().getLastName()) < 0) {
-                    return -1;
-                }
-                else {
-                    return 1;
-                }
-            }
-        });
+        sortedBooks.sort((o1, o2) -> Integer.compare(o1.getAuthor().getLastName().compareTo(o2.getAuthor().getLastName()), 0));
         return sortedBooks;
     }
 }
