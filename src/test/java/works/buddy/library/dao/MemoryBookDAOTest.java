@@ -1,7 +1,7 @@
 package works.buddy.library.dao;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
@@ -36,7 +36,7 @@ public class MemoryBookDAOTest {
 
     private BookDAO bookDAO;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         this.bookDAO = new MemoryBookDAO(new HashSet<>());
     }
