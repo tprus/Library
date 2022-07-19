@@ -13,3 +13,14 @@ dajesz mi do sprawdzenia (code review), a po zatwierdzeniu mergujesz do mastera
 TODO
 - napisz unit testy do klasy MemoryBookDAO
 - dodaj persistent DAO, które będzie zapisywać dane w bazie MySQL
+
+
+Pytania: 
+- Czy poprawnie interpretuję poniższe elementy świeżo dodanego kodu?
+    - Obiekt klasy ApplicationContext inicjalizowany w Main służy do tworzenia obiektów bez ręcznego definiowania zależności określonych w konstruktorze
+    - Elementy opatrzone tagiem @Service albo @AutoWired są oznaczone, jako obiekty do samodzielnego tworzenia przez kontener
+    - Adnotacja @PostConstruct nie jest ściśle związana ze springiem, po wyjściu z konstruktora wykonuje się automatycznie
+    - W klasie LibraryConfig określamy:
+      - w jakich plikach szukać obiektów oznaczonych tagami @Service i @Autowired - poprzez adnotację @ComponentScan
+      - Jak tworzyć obiekty systemowe bez konstruktorów domyślnych
+- W przypadku posiadania dwóch klas implementujących ten sam interfejs (np. MemoryBookDAO i MySQLBookDAO) -  jak wskazujemy która implementacja zostanie utworzona jak będziemy chcieli przez ApplicationContext wygenerować BookDAO?

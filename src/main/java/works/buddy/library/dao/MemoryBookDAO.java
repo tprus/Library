@@ -1,12 +1,19 @@
 package works.buddy.library.dao;
 
+import org.springframework.stereotype.Service;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
 
+@Service
 public class MemoryBookDAO implements BookDAO {
+    private static final Collection<Book> SAMPLE_BOOKS = new HashSet<>(
+            List.of(new Book(1 , "Zen", new Author("Scott", "Chacon")), new Book(2,"Thinking in Java", new Author("Bruce", "Eckel"))));
 
     private static final int MIN_NAME_LENGTH = 5;
 
@@ -19,6 +26,11 @@ public class MemoryBookDAO implements BookDAO {
             throw new IllegalArgumentException("Parameter books cannot be null");
         }
         this.books = books;
+    }
+
+    @PostConstruct
+    public void init(){
+        books = SAMPLE_BOOKS;
     }
 
     @Override

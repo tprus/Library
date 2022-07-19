@@ -122,19 +122,6 @@ public class MemoryBookDAOTest {
                 () -> bookDAO.save(new Book(1, SAMPLE_NAME, new Author(SAMPLE_NAME, TOO_LONG_NAME))));
         assertEquals("Author last name cannot be longer than 100 characters", thrown.getMessage());
     }
-    @Test
-    public void saveThrowingErrorWhenBookTitleTooShort() {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, TOO_SHORT_NAME, SAMPLE_AUTHOR)));
-        assertEquals("Title cannot be shorter than 5 characters", thrown.getMessage());
-    }
-
-    @Test
-    public void saveThrowingErrorWhenBookTitleTooLong() {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, TOO_LONG_NAME, SAMPLE_AUTHOR)));
-        assertEquals("Title cannot be longer than 100 characters", thrown.getMessage());
-    }
-
-
 
     @Test
     public void saveTwoSameBooks() {

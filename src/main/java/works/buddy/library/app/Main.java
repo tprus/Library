@@ -1,19 +1,17 @@
 package works.buddy.library.app;
 
-import works.buddy.library.dao.MemoryBookDAO;
-import works.buddy.library.model.Author;
-import works.buddy.library.model.Book;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import works.buddy.library.app.config.LibraryConfig;
 import works.buddy.library.services.ConsoleBookManager;
-import works.buddy.library.ui.ConsoleLibraryFrontend;
 
-import java.util.*;
 
 public class Main {
 
-    private static final Collection<Book> SAMPLE_BOOKS = new HashSet<>(
-            List.of(new Book(1 , "Zen", new Author("Scott", "Chacon")), new Book(2,"Thinking in Java", new Author("Bruce", "Eckel"))));
 
     public static void main(String[] args) {
-        new ConsoleBookManager(new MemoryBookDAO(SAMPLE_BOOKS), new ConsoleLibraryFrontend(new Scanner(System.in))).run();
+        ApplicationContext context = new AnnotationConfigApplicationContext(LibraryConfig.class);
+        ConsoleBookManager manager = context.getBean(ConsoleBookManager.class);
+        manager.run();
     }
 }

@@ -1,19 +1,25 @@
 package works.buddy.library.services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 import works.buddy.library.ui.LibraryFrontend;
 
+@Service
 public class ConsoleBookManager {
-    private BookDAO bookDAO;
 
+    @Autowired
+    private BookDAO bookDAO;
+    @Autowired
     private LibraryFrontend libraryFrontend;
 
     public ConsoleBookManager(BookDAO bookDAO, LibraryFrontend libraryFrontend) {
         this.bookDAO = bookDAO;
         this.libraryFrontend = libraryFrontend;
     }
+
 
     public void run() {
         printMainMenu();
