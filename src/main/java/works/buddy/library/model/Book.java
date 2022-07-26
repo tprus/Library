@@ -1,14 +1,30 @@
 package works.buddy.library.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Book {
+@Entity
+@Table(name = "book")
+public class Book implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String title;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "author_id")
     private Author author;
+
+    public Book() {
+    }
+
+    public Book(String title, Author author) {
+        this.title = title;
+        this.author = author;
+    }
 
     public Book(Integer id, String title, Author author) {
         this.id = id;
@@ -35,6 +51,12 @@ public class Book {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + getId() + ", Name: " + getTitle() + ", Author first name: " + getAuthor().getFirstName() + ", Author Last Name: " +
+                getAuthor().getLastName();
     }
 
     public String getTitle() {

@@ -1,0 +1,18 @@
+# h2
+#hibernate.dialect=org.hibernate.dialect.H2Dialect
+#hibernate.connection.driver_class=org.h2.Driver
+#hibernate_connection_url=jdbc:h2:file:./data/demo
+#hibernate.connection.username=sa
+#hibernate.connection.password=sa
+#hibernate.hbm2ddl.auto=update
+#hibernate.ddl-auto=update
+
+# mariadb
+hibernate.dialect=org.hibernate.dialect.MariaDBDialect
+hibernate.connection.driver_class=org.mariadb.jdbc.Driver
+hibernate_connection_url=jdbc:mariadb://172.17.0.2/library_db
+hibernate.connection.username=library_app
+hibernate.connection.password=mypa
+hibernate.hbm2ddl.auto=update
+hibernate.ddl-auto=update
+

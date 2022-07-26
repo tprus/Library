@@ -11,9 +11,11 @@ public interface LibraryFrontend {
     String getResponse();
 
     void askAuthorFirstName();
+
     void askAuthorLastName();
 
     void askBookName();
+
     void askId();
 
     void listBooks(Collection<Book> books);

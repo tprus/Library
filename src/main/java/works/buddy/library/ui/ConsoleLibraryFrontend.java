@@ -10,7 +10,8 @@ import java.util.Scanner;
 @Service
 public class ConsoleLibraryFrontend implements LibraryFrontend {
 
-    public static final String WELCOME_MSG = "\nWelcome, select action:\n1. List all books\n2. Add a book to our collection\n3. Exit\n";
+    public static final String WELCOME_MSG = "\nWelcome, select action:\n1. List all books\n2. List books by author ID\n3. List books by author\n4. List books by title\n5. Add a book to our collection\nexit. Exit\n";
+
     @Autowired
     private Scanner scanner;
 
@@ -32,20 +33,25 @@ public class ConsoleLibraryFrontend implements LibraryFrontend {
     public void askAuthorFirstName() {
         System.out.println("Authors first name: ");
     }
-    public void askAuthorLastName() {  System.out.println("Authors last name: ");
+
+    public void askAuthorLastName() {
+        System.out.println("Authors last name: ");
     }
 
     @Override
-    public void askBookName() { System.out.println("Name: "); }
+    public void askBookName() {
+        System.out.println("Name: ");
+    }
 
     @Override
-    public void askId() { System.out.println("ID "); }
-
+    public void askId() {
+        System.out.println("ID ");
+    }
 
     @Override
     public void listBooks(Collection<Book> books) {
         for (Book book : books) {
-            System.out.println("ID: " + book.getId() + ", Name: " + book.getTitle() + ", Author: " + book.getAuthor());
+            System.out.println(book);
         }
     }
 

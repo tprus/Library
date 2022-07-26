@@ -5,3 +5,6 @@ target/
 
 *.iml
 
+/src/main/resources/hibernate.properties
+/data/demo.mv.db
+/data/demo.trace.db
