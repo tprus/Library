@@ -8,12 +8,13 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.core.Ordered;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import works.buddy.library.api.config.ApiConfig;
 
 import java.util.Scanner;
 
 @Configuration
 @ComponentScan(basePackages = "works.buddy.library")
-@Import({HibernateConfig.class})
+@Import({HibernateConfig.class, ApiConfig.class})
 public class LibraryConfig {
 
     @Bean

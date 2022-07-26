@@ -1,5 +1,6 @@
 package works.buddy.library.api;
 
+import org.springframework.stereotype.Component;
 import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.BookFront;
 
@@ -13,6 +14,7 @@ import java.util.Collection;
 @Path("library")
 @Produces("application/xml")
 @Consumes( "application/xml" )
+@Component("restLibraryAPI")
 public class RestLibraryAPI implements LibraryAPI {
 
     @Override
@@ -20,9 +22,13 @@ public class RestLibraryAPI implements LibraryAPI {
     @Path("books")
     public Collection<BookFront> getBooks() {
         ArrayList<BookFront> bookFronts = new ArrayList<>();
-        BookFront bookFront = new BookFront("Hello World");
-        bookFront.setAuthor(new AuthorFront("Juzek"));
-        bookFronts.add(bookFront);
+        BookFront bookFront1 = new BookFront("Pro Git");
+        BookFront bookFront2 = new BookFront("Thinking in Java");
+        bookFront1.setAuthor(new AuthorFront("Scott","Chacon"));
+        bookFront2.setAuthor(new AuthorFront("Bruce","Eckel"));
+        bookFronts.add(bookFront1);
+        bookFronts.add(bookFront2);
         return bookFronts;
     }
+
 }

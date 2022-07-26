@@ -15,8 +15,9 @@ public class AuthorFront {
     public AuthorFront() {
     }
 
-    public AuthorFront(String firstName) {
+    public AuthorFront(String firstName, String lastName) {
         this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public Integer getId() {
@@ -28,6 +29,7 @@ public class AuthorFront {
         return firstName;
     }
 
+    @XmlElement
     public String getLastName() {
         return lastName;
     }
