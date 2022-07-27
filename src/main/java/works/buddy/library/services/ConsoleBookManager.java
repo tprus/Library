@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
-import works.buddy.library.ui.LibraryFrontend;
+import works.buddy.library.console.LibraryFrontend;
 
 import javax.transaction.Transactional;
 

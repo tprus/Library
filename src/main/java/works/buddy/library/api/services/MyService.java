@@ -1,4 +1,4 @@
-package works.buddy.library.api.service;
+package works.buddy.library.api.services;
 
 import works.buddy.library.api.view.BookFront;
 

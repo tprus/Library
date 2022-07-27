@@ -3,7 +3,7 @@ package works.buddy.library.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import works.buddy.library.api.service.MyService;
+import works.buddy.library.api.services.MyService;
 import works.buddy.library.api.view.BookFront;
 
 import javax.ws.rs.*;
