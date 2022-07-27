@@ -1,12 +1,10 @@
 package works.buddy.library.api.config;
 
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import works.buddy.library.api.LibraryAPI;
-import works.buddy.library.api.RestLibraryAPI;
 
 @Configuration
 @ComponentScan(basePackages = "works.buddy.library")

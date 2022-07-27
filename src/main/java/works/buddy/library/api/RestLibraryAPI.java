@@ -1,21 +1,15 @@
 package works.buddy.library.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import works.buddy.library.api.service.BookService;
 import works.buddy.library.api.service.MyService;
-import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.BookFront;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Path("library")
