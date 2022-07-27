@@ -46,5 +46,4 @@ public class RestLibraryAPI implements LibraryAPI {
     public Collection<BookFront> getBooksByTitle(@PathParam("bookTitle") String title) {
         return bookService.getBooksByTitle(title);
     }
-
 }
