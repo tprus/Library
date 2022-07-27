@@ -11,4 +11,7 @@ public interface MyService {
     Collection<BookFront> getBooksByAuthorId(Integer authorId);
 
     Collection<BookFront> getBooksByAuthor(String authorFirstName, String authorLastName);
+
+    Collection<BookFront> getBooksByTitle(String title);
+
 }

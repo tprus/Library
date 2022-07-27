@@ -37,6 +37,11 @@ public class BookService implements MyService {
         return mapBookCollection(bookDAO.getBooksByAuthor(new Author(authorFirstName, authorLastName)));
     }
 
+    @Override
+    public Collection<BookFront> getBooksByTitle(String title) {
+        return mapBookCollection(bookDAO.getBooksByTitle(title));
+    }
+
     private Collection<BookFront> mapBookCollection(Collection<Book> booksToMap) {
         Collection<BookFront> mappedBooks = new ArrayList<>();
         for (Book book : booksToMap) {
