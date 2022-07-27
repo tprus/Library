@@ -6,10 +6,7 @@ import org.springframework.stereotype.Service;
 import works.buddy.library.api.service.MyService;
 import works.buddy.library.api.view.BookFront;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.util.Collection;
 
 @Path("library")
@@ -22,24 +19,18 @@ public class RestLibraryAPI implements LibraryAPI {
     @Qualifier("bookService")
     MyService service;
 
-    //    @Override
-//    @GET
-//    @Path("books")
-//    public Collection<BookFront> getBooks() {
-//        ArrayList<BookFront> bookFronts = new ArrayList<>();
-//        BookFront bookFront1 = new BookFront("Pro Git");
-//        BookFront bookFront2 = new BookFront("Thinking in Java");
-//        bookFront1.setAuthor(new AuthorFront("Scott", "Chacon"));
-//        bookFront2.setAuthor(new AuthorFront("Bruce", "Eckel"));
-//        bookFronts.add(bookFront1);
-//        bookFronts.add(bookFront2);
-//        return bookFronts;
-//    }
     @Override
     @GET
     @Path("books")
     public Collection<BookFront> getBooks() {
         return service.getBooks();
+    }
+
+    @Override
+    @GET
+    @Path("books_by_author_id/{authorId}")
+    public Collection<BookFront> getBooksByAuthorId(@PathParam("authorId") Integer authorId) {
+        return service.getBooksByAuthorId(authorId);
     }
 
 }

@@ -7,4 +7,6 @@ import java.util.Collection;
 public interface MyService {
 
     Collection<BookFront> getBooks();
+
+    Collection<BookFront> getBooksByAuthorId(Integer authorId);
 }
