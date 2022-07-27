@@ -8,7 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import works.buddy.library.api.RestLibraryAPI;
 import works.buddy.library.app.config.LibraryConfig;
 
-public class WebAppMain {
+public class AppServer {
 
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(LibraryConfig.class);
