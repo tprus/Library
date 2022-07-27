@@ -1,4 +1,4 @@
-package works.buddy.library.app;
+package works.buddy.library.app.web;
 
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
@@ -13,9 +13,7 @@ public class WebAppMain {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(LibraryConfig.class);
         JAXRSServerFactoryBean factoryBean = context.getBean(JAXRSServerFactoryBean.class);
-        // I had to extract the line below from ApiConfig in order to get RestLibraryAPI bean
         factoryBean.setResourceProvider(new SingletonResourceProvider(context.getBean(RestLibraryAPI.class)));
-        RestLibraryAPI restLibraryAPI = context.getBean(RestLibraryAPI.class);
         Server server = factoryBean.create();
     }
 }
