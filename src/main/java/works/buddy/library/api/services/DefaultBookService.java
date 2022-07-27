@@ -24,25 +24,25 @@ public class DefaultBookService implements BookService {
 
     @Override
     public Collection<BookFront> getBooks() {
-        return mapBookCollection(bookDAO.getBooks());
+        return getBookFronts(bookDAO.getBooks());
     }
 
     @Override
     public Collection<BookFront> getBooksByAuthorId(Integer authorId) {
-        return mapBookCollection(bookDAO.getBooksByAuthorId(authorId));
+        return getBookFronts(bookDAO.getBooksByAuthorId(authorId));
     }
 
     @Override
     public Collection<BookFront> getBooksByAuthor(String authorFirstName, String authorLastName) {
-        return mapBookCollection(bookDAO.getBooksByAuthor(new Author(authorFirstName, authorLastName)));
+        return getBookFronts(bookDAO.getBooksByAuthor(new Author(authorFirstName, authorLastName)));
     }
 
     @Override
     public Collection<BookFront> getBooksByTitle(String title) {
-        return mapBookCollection(bookDAO.getBooksByTitle(title));
+        return getBookFronts(bookDAO.getBooksByTitle(title));
     }
 
-    private Collection<BookFront> mapBookCollection(Collection<Book> booksToMap) {
+    private Collection<BookFront> getBookFronts(Collection<Book> booksToMap) {
         Collection<BookFront> mappedBooks = new ArrayList<>();
         for (Book book : booksToMap) {
             mappedBooks.add(new BookFront(book));

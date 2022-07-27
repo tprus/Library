@@ -17,7 +17,7 @@ public class RestLibraryAPI implements LibraryAPI {
 
     @Autowired
     @Qualifier("bookService")
-    BookService bookService;
+    private BookService bookService;
 
     @Override
     @GET
