@@ -5,7 +5,7 @@ import works.buddy.library.model.Author;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name = "Author")
+@XmlRootElement(name = "author")
 public class AuthorFront {
 
     private Integer id;

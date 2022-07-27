@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 
-@XmlRootElement(name = "Book")
+@XmlRootElement(name = "book")
 public class BookFront implements Serializable {
 
     private Integer id;
