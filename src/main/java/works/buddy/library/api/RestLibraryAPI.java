@@ -33,4 +33,11 @@ public class RestLibraryAPI implements LibraryAPI {
         return service.getBooksByAuthorId(authorId);
     }
 
+    @Override
+    @GET
+    @Path("books_by_author/{authorFirstName}_{authorLastName}")
+    public Collection<BookFront> getBooksByAuthor(@PathParam("authorFirstName") String authorFirstName, @PathParam("authorLastName") String authorLastName) {
+        return service.getBooksByAuthor(authorFirstName, authorLastName);
+    }
+
 }
