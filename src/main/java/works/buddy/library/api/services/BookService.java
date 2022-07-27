@@ -14,4 +14,5 @@ public interface BookService {
 
     Collection<BookFront> getBooksByTitle(String title);
 
+    void createBook(BookFront book);
 }

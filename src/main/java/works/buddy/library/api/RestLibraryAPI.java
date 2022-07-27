@@ -7,6 +7,7 @@ import works.buddy.library.api.services.BookService;
 import works.buddy.library.api.view.BookFront;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.util.Collection;
 
 @Path("library")
@@ -45,5 +46,14 @@ public class RestLibraryAPI implements LibraryAPI {
     @Path("books_by_title/{bookTitle}")
     public Collection<BookFront> getBooksByTitle(@PathParam("bookTitle") String title) {
         return bookService.getBooksByTitle(title);
+    }
+
+    //TODO nie zaczytuje danych wysyłanych przez postmana - dodaje do bazy danych obiekt o wartościach null
+    @Override
+    @POST
+    @Path("books")
+    public Response createBook(BookFront book){
+        bookService.createBook(book);
+        return Response.ok(book).build();
     }
 }

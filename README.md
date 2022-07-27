@@ -1,6 +1,7 @@
 Uwagi:
 
 TODO
+- ustawić poprawną ścieżkę dla metody get Books
 - Autor powinien być rozróżniany po imieniu i nazwisku - dodanie książki z autorem już istniejącym w bazie danych tworzy nowego, choć nie powinno
 
 Status:
@@ -10,5 +11,3 @@ packets)"
 
 Pytania:
 
-user powinien mieć dostęp do tych samych komend co przez consolemanager
-warstwa service pod api - logika biznesowa -tutaj ma być wstrzyknięte bookDAO

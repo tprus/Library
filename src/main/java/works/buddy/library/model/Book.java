@@ -1,5 +1,7 @@
 package works.buddy.library.model;
 
+import works.buddy.library.api.view.BookFront;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -30,6 +32,11 @@ public class Book implements Serializable {
         this.id = id;
         this.title = title;
         this.author = author;
+    }
+
+    public Book(BookFront book) {
+        this.title = book.getTitle();
+        this.author = new Author(book.getAuthor().getFirstName(), book.getAuthor().getLastName());
     }
 
     public Integer getId() {

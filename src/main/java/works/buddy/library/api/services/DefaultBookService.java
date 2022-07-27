@@ -42,11 +42,20 @@ public class DefaultBookService implements BookService {
         return getBookFronts(bookDAO.getBooksByTitle(title));
     }
 
+    @Override
+    public void createBook(BookFront book) {
+        bookDAO.save(getBook(book));
+    }
+
     private Collection<BookFront> getBookFronts(Collection<Book> booksToMap) {
         Collection<BookFront> mappedBooks = new ArrayList<>();
         for (Book book : booksToMap) {
             mappedBooks.add(new BookFront(book));
         }
         return mappedBooks;
+    }
+
+    private Book getBook(BookFront book) {
+        return new Book(book);
     }
 }
