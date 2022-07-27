@@ -10,3 +10,5 @@ packets)"
 
 Pytania:
 
+user powinien mieć dostęp do tych samych komend co przez consolemanager
+warstwa service pod api - logika biznesowa -tutaj ma być wstrzyknięte bookDAO

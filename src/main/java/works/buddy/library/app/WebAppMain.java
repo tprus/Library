@@ -14,6 +14,9 @@ public class WebAppMain {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(LibraryConfig.class);
         JAXRSServerFactoryBean factoryBean = context.getBean(JAXRSServerFactoryBean.class);
+        // I had to extract this line below from ApiConfig in order to get RestLibraryAPI bean
+        factoryBean.setResourceProvider(new SingletonResourceProvider(context.getBean(RestLibraryAPI.class)));
+        RestLibraryAPI restLibraryAPI = context.getBean(RestLibraryAPI.class);
         Server server = factoryBean.create();
     }
 }

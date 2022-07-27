@@ -1,5 +1,7 @@
 package works.buddy.library.api.view;
 
+import works.buddy.library.model.Book;
+
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
@@ -14,6 +16,12 @@ public class BookFront implements Serializable {
     private AuthorFront author;
 
     public BookFront() {
+    }
+
+    public BookFront(Book book) {
+        this.id = book.getId();
+        this.title = book.getTitle();
+        this.author = new AuthorFront(book.getAuthor());
     }
 
     public BookFront(String title) {

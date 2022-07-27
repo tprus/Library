@@ -1,6 +1,13 @@
 package works.buddy.library.api;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import works.buddy.library.api.service.BookService;
+import works.buddy.library.api.service.MyService;
 import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.BookFront;
 
@@ -13,22 +20,32 @@ import java.util.Collection;
 
 @Path("library")
 @Produces("application/xml")
-@Consumes( "application/xml" )
-@Component("restLibraryAPI")
+@Consumes("application/xml")
+@Service
 public class RestLibraryAPI implements LibraryAPI {
 
+    @Autowired
+    @Qualifier("bookService")
+    MyService service;
+
+    //    @Override
+//    @GET
+//    @Path("books")
+//    public Collection<BookFront> getBooks() {
+//        ArrayList<BookFront> bookFronts = new ArrayList<>();
+//        BookFront bookFront1 = new BookFront("Pro Git");
+//        BookFront bookFront2 = new BookFront("Thinking in Java");
+//        bookFront1.setAuthor(new AuthorFront("Scott", "Chacon"));
+//        bookFront2.setAuthor(new AuthorFront("Bruce", "Eckel"));
+//        bookFronts.add(bookFront1);
+//        bookFronts.add(bookFront2);
+//        return bookFronts;
+//    }
     @Override
     @GET
     @Path("books")
     public Collection<BookFront> getBooks() {
-        ArrayList<BookFront> bookFronts = new ArrayList<>();
-        BookFront bookFront1 = new BookFront("Pro Git");
-        BookFront bookFront2 = new BookFront("Thinking in Java");
-        bookFront1.setAuthor(new AuthorFront("Scott","Chacon"));
-        bookFront2.setAuthor(new AuthorFront("Bruce","Eckel"));
-        bookFronts.add(bookFront1);
-        bookFronts.add(bookFront2);
-        return bookFronts;
+        return service.getBooks();
     }
 
 }
