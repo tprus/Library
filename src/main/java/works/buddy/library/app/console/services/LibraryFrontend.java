@@ -1,4 +1,4 @@
-package works.buddy.library.console;
+package works.buddy.library.app.console.services;
 
 import works.buddy.library.model.Book;
 

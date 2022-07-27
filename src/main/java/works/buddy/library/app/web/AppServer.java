@@ -3,7 +3,7 @@ package works.buddy.library.app.web;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import works.buddy.library.app.config.LibraryConfig;
+import works.buddy.library.config.LibraryConfig;
 
 public class AppServer {
 

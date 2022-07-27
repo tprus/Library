@@ -1,4 +1,4 @@
-package works.buddy.library.console;
+package works.buddy.library.app.console.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

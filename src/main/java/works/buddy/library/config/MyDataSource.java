@@ -1,4 +1,4 @@
-package works.buddy.library.app.config;
+package works.buddy.library.config;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;

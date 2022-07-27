@@ -1,9 +1,9 @@
-package works.buddy.library.app;
+package works.buddy.library.app.console;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import works.buddy.library.app.config.LibraryConfig;
-import works.buddy.library.services.ConsoleBookManager;
+import works.buddy.library.config.LibraryConfig;
+import works.buddy.library.app.console.services.ConsoleBookManager;
 
 public class Main {
 

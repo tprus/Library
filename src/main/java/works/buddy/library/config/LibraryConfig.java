@@ -1,4 +1,4 @@
-package works.buddy.library.app.config;
+package works.buddy.library.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;

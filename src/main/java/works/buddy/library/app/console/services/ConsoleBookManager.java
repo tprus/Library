@@ -1,4 +1,4 @@
-package works.buddy.library.services;
+package works.buddy.library.app.console.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
-import works.buddy.library.console.LibraryFrontend;
 
 import javax.transaction.Transactional;
 

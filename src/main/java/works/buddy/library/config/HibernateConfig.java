@@ -1,4 +1,4 @@
-package works.buddy.library.app.config;
+package works.buddy.library.config;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.beans.factory.annotation.Value;
