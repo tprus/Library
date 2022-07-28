@@ -3,7 +3,6 @@ package works.buddy.library.dao;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 @Repository
-@Component("hibernateBookDAO")
 public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements BookDAO {
 
     private static final String ID = "id";

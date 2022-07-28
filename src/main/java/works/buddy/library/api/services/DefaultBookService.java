@@ -2,11 +2,11 @@ package works.buddy.library.api.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.BookFront;
+import works.buddy.library.dao.AuthorDAO;
 import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
@@ -16,12 +16,14 @@ import java.util.Collection;
 
 @Service
 @Transactional
-@Component("bookService")
 public class DefaultBookService implements BookService {
 
     @Autowired
     @Qualifier("hibernateBookDAO")
     BookDAO bookDAO;
+
+    @Autowired
+    AuthorDAO authorDAO;
 
     @Override
     public Collection<BookFront> getBooks() {
@@ -57,6 +59,10 @@ public class DefaultBookService implements BookService {
         return mappedBooks;
     }
 
+    private AuthorFront getAuthorFront(Author authorToMap) {
+        return new AuthorFront(authorToMap);
+    }
+
     private Book getBook(BookFront book) {
         return new Book(book);
     }
@@ -65,6 +71,11 @@ public class DefaultBookService implements BookService {
         AuthorFront author = book.getAuthor();
         if (author == null) {
             throw new IllegalArgumentException("Author cannot be null");
+        }
+        // tries to get author with this full name - if exists then sets existing author in the book
+        AuthorFront existingAuthor = getAuthorFront(authorDAO.getAuthorByFullName(book.getAuthor().getFirstName(), book.getAuthor().getLastName()));
+        if (book.getAuthor().equals(existingAuthor)) {
+            book.setAuthor(existingAuthor);
         }
     }
 

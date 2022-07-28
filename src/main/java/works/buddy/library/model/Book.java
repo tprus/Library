@@ -18,7 +18,7 @@ public class Book implements Serializable {
     private String title;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @Cascade(org.hibernate.annotations.CascadeType.MERGE)
     @JoinColumn(name = "author_id")
     private Author author;
 
@@ -38,7 +38,7 @@ public class Book implements Serializable {
 
     public Book(BookFront book) {
         this.title = book.getTitle();
-        this.author = new Author(book.getAuthor().getFirstName(), book.getAuthor().getLastName());
+        this.author = new Author(book.getAuthor().getId(), book.getAuthor().getFirstName(), book.getAuthor().getLastName());
     }
 
     public Integer getId() {

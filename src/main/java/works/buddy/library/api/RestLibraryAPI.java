@@ -1,7 +1,6 @@
 package works.buddy.library.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import works.buddy.library.api.services.BookService;
 import works.buddy.library.api.view.BookFront;
@@ -17,7 +16,6 @@ import java.util.Collection;
 public class RestLibraryAPI implements LibraryAPI {
 
     @Autowired
-    @Qualifier("bookService")
     private BookService bookService;
 
     @Override
@@ -52,7 +50,7 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @POST
     @Path("books")
-    public Response createBook(BookFront book){
+    public Response createBook(BookFront book) {
         bookService.createBook(book);
         return Response.ok(book).build();
     }

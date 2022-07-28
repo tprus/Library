@@ -28,6 +28,10 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         return criteria.getExecutableCriteria(getCurrentSession()).list();
     }
 
+    protected T findOne(DetachedCriteria criteria) {
+        return (T) criteria.getExecutableCriteria(getCurrentSession()).uniqueResult();
+    }
+
     public List<T> findAll() {
         return getCurrentSession().createQuery("from " + getEntityClass().getName()).list();
     }

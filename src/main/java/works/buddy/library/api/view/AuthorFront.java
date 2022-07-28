@@ -4,6 +4,7 @@ import works.buddy.library.model.Author;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Objects;
 
 @XmlRootElement(name = "author")
 public class AuthorFront {
@@ -18,14 +19,29 @@ public class AuthorFront {
     }
 
     public AuthorFront(Author author) {
+        if (author == null) {
+            return;
+        }
         this.id = author.getId();
         this.firstName = author.getFirstName();
         this.lastName = author.getLastName();
     }
 
-    public AuthorFront(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        AuthorFront that = (AuthorFront) o;
+        return getFirstName().equals(that.getFirstName()) && getLastName().equals(that.getLastName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getFirstName(), getLastName());
     }
 
     public Integer getId() {

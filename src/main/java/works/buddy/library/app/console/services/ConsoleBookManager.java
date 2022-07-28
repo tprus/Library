@@ -19,7 +19,6 @@ public class ConsoleBookManager {
     private BookDAO bookDAO;
 
     @Autowired
-    @Qualifier("hibernateAuthorDAO")
     private AuthorDAO AuthorDAO;
 
     @Autowired
@@ -47,6 +46,7 @@ public class ConsoleBookManager {
                     break;
                 case "6":
                     getAuthorByFullName();
+                    break;
                 case "exit":
                     libraryFrontend.sayGoodBye();
                     return;
