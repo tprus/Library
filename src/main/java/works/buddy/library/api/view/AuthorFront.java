@@ -23,11 +23,6 @@ public class AuthorFront {
         this.lastName = author.getLastName();
     }
 
-    public AuthorFront(String firstName, String lastName) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     public Integer getId() {
         return id;
     }
