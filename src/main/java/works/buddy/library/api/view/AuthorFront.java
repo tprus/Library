@@ -9,7 +9,7 @@ import java.util.Objects;
 @XmlRootElement(name = "author")
 public class AuthorFront {
 
-    private Integer id;
+    private Long id;
 
     private String firstName;
 
@@ -44,7 +44,7 @@ public class AuthorFront {
         return Objects.hash(getFirstName(), getLastName());
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -58,7 +58,7 @@ public class AuthorFront {
         return lastName;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

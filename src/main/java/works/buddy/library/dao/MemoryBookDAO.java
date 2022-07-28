@@ -16,7 +16,7 @@ import java.util.List;
 public class MemoryBookDAO implements BookDAO {
 
     private static final Collection<Book> SAMPLE_BOOKS = new HashSet<>(
-            List.of(new Book(1, "Zen", new Author("Scott", "Chacon")), new Book(2, "Thinking in Java", new Author("Bruce", "Eckel"))));
+            List.of(new Book(1L, "Zen", new Author("Scott", "Chacon")), new Book(2L, "Thinking in Java", new Author("Bruce", "Eckel"))));
 
     private static final int MIN_NAME_LENGTH = 5;
 
@@ -81,7 +81,7 @@ public class MemoryBookDAO implements BookDAO {
     }
 
     @Override
-    public Collection<Book> getBooksByAuthorId(Integer author) {
+    public Collection<Book> getBooksByAuthorId(Long author) {
         return null;
     }
 
@@ -92,6 +92,11 @@ public class MemoryBookDAO implements BookDAO {
 
     @Override
     public Collection<Book> getBooksByAuthor(Author author) {
+        return null;
+    }
+
+    @Override
+    public Book getBook(Long id) {
         return null;
     }
 }

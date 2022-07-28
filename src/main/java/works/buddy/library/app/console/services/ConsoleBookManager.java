@@ -84,7 +84,7 @@ public class ConsoleBookManager {
 
     private void getBooksByAuthorId() {
         libraryFrontend.askId();
-        libraryFrontend.listBooks(bookDAO.getBooksByAuthorId(Integer.valueOf(getResponse())));
+        libraryFrontend.listBooks(bookDAO.getBooksByAuthorId(Long.valueOf(getResponse())));
     }
 
     private void getBooksByTitle() {

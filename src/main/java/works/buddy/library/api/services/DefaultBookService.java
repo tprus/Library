@@ -31,7 +31,16 @@ public class DefaultBookService implements BookService {
     }
 
     @Override
-    public Collection<BookFront> getBooksByAuthorId(Integer authorId) {
+    public BookFront getBook(Long id) {
+        return getBookFront(bookDAO.getBook(id));
+    }
+
+    private BookFront getBookFront(Book book) {
+        return new BookFront(book);
+    }
+
+    @Override
+    public Collection<BookFront> getBooksByAuthorId(Long authorId) {
         return getBookFronts(bookDAO.getBooksByAuthorId(authorId));
     }
 
@@ -67,12 +76,12 @@ public class DefaultBookService implements BookService {
         return new Book(book);
     }
 
+
     private void validate(BookFront book) {
         AuthorFront author = book.getAuthor();
         if (author == null) {
             throw new IllegalArgumentException("Author cannot be null");
         }
-        // tries to get author with this full name - if exists then sets existing author in the book
         AuthorFront existingAuthor = getAuthorFront(authorDAO.getAuthorByFullName(book.getAuthor().getFirstName(), book.getAuthor().getLastName()));
         if (book.getAuthor().equals(existingAuthor)) {
             book.setAuthor(existingAuthor);

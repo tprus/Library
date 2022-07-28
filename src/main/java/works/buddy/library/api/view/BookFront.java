@@ -9,7 +9,7 @@ import java.io.Serializable;
 @XmlRootElement(name = "book")
 public class BookFront implements Serializable {
 
-    private Integer id;
+    private Long id;
 
     private String title;
 
@@ -28,7 +28,7 @@ public class BookFront implements Serializable {
         this.title = title;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -42,7 +42,7 @@ public class BookFront implements Serializable {
         return author;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

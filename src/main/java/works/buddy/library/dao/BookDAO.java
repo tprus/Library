@@ -11,9 +11,11 @@ public interface BookDAO {
 
     Collection<Book> getBooks();
 
-    Collection<Book> getBooksByAuthorId(Integer authorId);
+    Collection<Book> getBooksByAuthorId(Long authorId);
 
     Collection<Book> getBooksByTitle(String title);
 
     Collection<Book> getBooksByAuthor(Author author);
+
+    Book getBook(Long id);
 }

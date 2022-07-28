@@ -41,7 +41,7 @@ public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements Book
     }
 
     @Override
-    public Collection<Book> getBooksByAuthorId(Integer authorId) {
+    public Collection<Book> getBooksByAuthorId(Long authorId) {
         DetachedCriteria criteria = createCriteria();
         DetachedCriteria authorCriteria = getAuthorCriteria(criteria);
         authorCriteria.add(Restrictions.eq(ID, authorId));
@@ -61,6 +61,11 @@ public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements Book
         DetachedCriteria authorCriteria = getAuthorCriteria(criteria);
         authorCriteria.add(Restrictions.and(getLike(FIRST_NAME, author.getFirstName()), getLike(LAST_NAME, author.getLastName())));
         return find(criteria);
+    }
+
+    @Override
+    public Book getBook(Long id) {
+        return findOne(id);
     }
 
     private DetachedCriteria getAuthorCriteria(DetachedCriteria criteria) {

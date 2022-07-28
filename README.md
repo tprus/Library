@@ -1,8 +1,9 @@
 Uwagi:
 
 TODO
-- ustawić poprawną ścieżkę dla metody get Books
-- Autor powinien być rozróżniany po imieniu i nazwisku - dodanie książki z autorem już istniejącym w bazie danych tworzy nowego, choć nie powinno
+
+- przebudowanie API do autora: najpierw osobno metoda POST do stworzenia autora, potem Metoda Post do stworzenia Książki z polem author_id
+
 
 Status:
 Występuje problem podczas wychodzenia z aplikacji. W logu kontenera po każdym wyjściu pojawia się komunikat:

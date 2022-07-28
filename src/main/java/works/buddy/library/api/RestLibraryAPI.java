@@ -27,8 +27,14 @@ public class RestLibraryAPI implements LibraryAPI {
 
     @Override
     @GET
+    @Path("books/{id}")
+    public BookFront getBook(@PathParam("id") Long bookId) {
+        return bookService.getBook(bookId);
+    }
+    @Override
+    @GET
     @Path("books_by_author_id/{authorId}")
-    public Collection<BookFront> getBooksByAuthorId(@PathParam("authorId") Integer authorId) {
+    public Collection<BookFront> getBooksByAuthorId(@PathParam("authorId") Long authorId) {
         return bookService.getBooksByAuthorId(authorId);
     }
 
