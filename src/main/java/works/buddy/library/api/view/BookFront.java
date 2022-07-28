@@ -17,10 +17,6 @@ public class BookFront implements Serializable {
 
     public BookFront() {
     }
-    public BookFront(String title, String firstName, String lastName){
-        this.title = title;
-        this.author = new AuthorFront(firstName,lastName);
-    }
 
     public BookFront(Book book) {
         this.id = book.getId();
@@ -53,9 +49,7 @@ public class BookFront implements Serializable {
     public void setTitle(String title) {
         this.title = title;
     }
-    public void setAuthor(String firstName, String lastName){
-        this.author = new AuthorFront(firstName,lastName);
-    }
+
     public void setAuthor(AuthorFront author) {
         this.author = author;
     }

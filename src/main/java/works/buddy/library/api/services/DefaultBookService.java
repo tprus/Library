@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.BookFront;
 import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Author;
@@ -44,6 +45,7 @@ public class DefaultBookService implements BookService {
 
     @Override
     public void createBook(BookFront book) {
+        validate(book);
         bookDAO.save(getBook(book));
     }
 
@@ -58,4 +60,12 @@ public class DefaultBookService implements BookService {
     private Book getBook(BookFront book) {
         return new Book(book);
     }
+
+    private void validate(BookFront book) {
+        AuthorFront author = book.getAuthor();
+        if (author == null) {
+            throw new IllegalArgumentException("Author cannot be null");
+        }
+    }
+
 }

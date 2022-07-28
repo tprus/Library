@@ -53,7 +53,7 @@ public class RestLibraryAPI implements LibraryAPI {
     @POST
     @Path("books")
     public Response createBook(BookFront book){
-        //bookService.createBook(book);
+        bookService.createBook(book);
         return Response.ok(book).build();
     }
 }
