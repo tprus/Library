@@ -1,10 +1,12 @@
 package works.buddy.library.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 @Table(name = "author")
-public class Author {
+public class Author implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,12 +17,19 @@ public class Author {
     @OrderBy
     private String lastName;
 
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Collection<Book> books;
+
     public Author() {
     }
 
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+    @Override
+    public String toString() {
+        return "Author id: "+ getId() +" first name: " + getFirstName() + ", Last Name: " + getLastName();
     }
 
     public Integer getId() {

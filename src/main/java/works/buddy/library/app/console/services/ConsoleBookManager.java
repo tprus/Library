@@ -3,6 +3,7 @@ package works.buddy.library.app.console.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import works.buddy.library.dao.AuthorDAO;
 import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
@@ -16,6 +17,10 @@ public class ConsoleBookManager {
     @Autowired
     @Qualifier("hibernateBookDAO")
     private BookDAO bookDAO;
+
+    @Autowired
+    @Qualifier("hibernateAuthorDAO")
+    private AuthorDAO AuthorDAO;
 
     @Autowired
     private LibraryFrontend libraryFrontend;
@@ -40,6 +45,8 @@ public class ConsoleBookManager {
                 case "5":
                     addBook();
                     break;
+                case "6":
+                    getAuthorByFullName();
                 case "exit":
                     libraryFrontend.sayGoodBye();
                     return;
@@ -49,6 +56,13 @@ public class ConsoleBookManager {
             printMainMenu();
             response = getResponse();
         }
+    }
+
+    private void getAuthorByFullName() {
+        libraryFrontend.askAuthorFirstName();
+        String firstName = getResponse();
+        libraryFrontend.askAuthorLastName();
+        libraryFrontend.listAuthor(AuthorDAO.getAuthorByFullName(firstName, getResponse()));
     }
 
     private void printMainMenu() {

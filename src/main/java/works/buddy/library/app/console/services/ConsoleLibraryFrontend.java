@@ -2,6 +2,7 @@ package works.buddy.library.app.console.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
 import java.util.Collection;
@@ -54,7 +55,10 @@ public class ConsoleLibraryFrontend implements LibraryFrontend {
             System.out.println(book);
         }
     }
-
+    @Override
+    public void listAuthor(Author author){
+        System.out.println(author);
+    }
     @Override
     public void sayGoodBye() {
         System.out.println("Good bye!");

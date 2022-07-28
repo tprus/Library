@@ -1,5 +1,6 @@
 package works.buddy.library.model;
 
+import org.hibernate.annotations.Cascade;
 import works.buddy.library.api.view.BookFront;
 
 import javax.persistence.*;
@@ -16,7 +17,8 @@ public class Book implements Serializable {
 
     private String title;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinColumn(name = "author_id")
     private Author author;
 

@@ -1,5 +1,6 @@
 package works.buddy.library.app.console.services;
 
+import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
 import java.util.Collection;
@@ -19,6 +20,8 @@ public interface LibraryFrontend {
     void askId();
 
     void listBooks(Collection<Book> books);
+
+    void listAuthor(Author author);
 
     void sayGoodBye();
 
