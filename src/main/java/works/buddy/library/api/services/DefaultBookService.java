@@ -20,10 +20,10 @@ public class DefaultBookService implements BookService {
 
     @Autowired
     @Qualifier("hibernateBookDAO")
-    BookDAO bookDAO;
+    private BookDAO bookDAO;
 
     @Autowired
-    AuthorDAO authorDAO;
+    private AuthorDAO authorDAO;
 
     @Override
     public Collection<BookFront> getBooks() {
