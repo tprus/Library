@@ -40,21 +40,6 @@ public class DefaultBookService implements BookService {
     }
 
     @Override
-    public Collection<BookFront> getBooksByAuthorId(Long authorId) {
-        return getBookFronts(bookDAO.getBooksByAuthorId(authorId));
-    }
-
-    @Override
-    public Collection<BookFront> getBooksByAuthor(String authorFirstName, String authorLastName) {
-        return getBookFronts(bookDAO.getBooksByAuthor(new Author(authorFirstName, authorLastName)));
-    }
-
-    @Override
-    public Collection<BookFront> getBooksByTitle(String title) {
-        return getBookFronts(bookDAO.getBooksByTitle(title));
-    }
-
-    @Override
     public void createBook(BookFront book) {
         validate(book);
         bookDAO.save(getBook(book));
@@ -75,7 +60,6 @@ public class DefaultBookService implements BookService {
     private Book getBook(BookFront book) {
         return new Book(book);
     }
-
 
     private void validate(BookFront book) {
         AuthorFront author = book.getAuthor();
