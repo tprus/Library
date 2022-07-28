@@ -26,28 +26,6 @@ public class RestLibraryAPI implements LibraryAPI {
     }
 
     @Override
-    @GET
-    @Path("books_by_author_id/{authorId}")
-    public Collection<BookFront> getBooksByAuthorId(@PathParam("authorId") Integer authorId) {
-        return bookService.getBooksByAuthorId(authorId);
-    }
-
-    @Override
-    @GET
-    @Path("books_by_author/{authorFirstName}_{authorLastName}")
-    public Collection<BookFront> getBooksByAuthor(@PathParam("authorFirstName") String authorFirstName, @PathParam("authorLastName") String authorLastName) {
-        return bookService.getBooksByAuthor(authorFirstName, authorLastName);
-    }
-
-    @Override
-    @GET
-    @Path("books_by_title/{bookTitle}")
-    public Collection<BookFront> getBooksByTitle(@PathParam("bookTitle") String title) {
-        return bookService.getBooksByTitle(title);
-    }
-
-    //TODO nie zaczytuje danych wysyłanych przez postmana - dodaje do bazy danych obiekt o wartościach null
-    @Override
     @POST
     @Path("books")
     public Response createBook(BookFront book) {
