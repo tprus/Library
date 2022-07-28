@@ -2,7 +2,9 @@ package works.buddy.library.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import works.buddy.library.api.services.AuthorService;
 import works.buddy.library.api.services.BookService;
+import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.BookFront;
 
 import javax.ws.rs.*;
@@ -18,6 +20,9 @@ public class RestLibraryAPI implements LibraryAPI {
     @Autowired
     private BookService bookService;
 
+    @Autowired
+    private AuthorService authorService;
+
     @Override
     @GET
     @Path("books")
@@ -31,6 +36,7 @@ public class RestLibraryAPI implements LibraryAPI {
     public BookFront getBook(@PathParam("id") Long bookId) {
         return bookService.getBook(bookId);
     }
+
     @Override
     @GET
     @Path("books_by_author_id/{authorId}")
@@ -59,5 +65,12 @@ public class RestLibraryAPI implements LibraryAPI {
     public Response createBook(BookFront book) {
         bookService.createBook(book);
         return Response.ok(book).build();
+    }
+
+    @Override
+    @GET
+    @Path("authors")
+    public Collection<AuthorFront> getAuthors() {
+        return authorService.getAuthors();
     }
 }
