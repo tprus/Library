@@ -6,14 +6,15 @@ import works.buddy.library.api.services.AuthorService;
 import works.buddy.library.api.services.BookService;
 import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.BookFront;
+import works.buddy.library.api.view.BooksFront;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.Collection;
 
 @Path("library")
-@Produces("application/xml")
-@Consumes("application/xml")
+@Produces("application/json")
+@Consumes("application/json")
 @Service
 public class RestLibraryAPI implements LibraryAPI {
 
@@ -26,7 +27,7 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @GET
     @Path("books")
-    public Collection<BookFront> getBooks() {
+    public BooksFront getBooks() {
         return bookService.getBooks();
     }
 

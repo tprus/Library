@@ -3,7 +3,7 @@ Uwagi:
 TODO
 
 - przebudowanie API do autora: najpierw osobno metoda POST do stworzenia autora, potem Metoda Post do stworzenia Książki z polem author_id
-
+- metoda createBook w RestLibraryAPI nie wczytuje danych
 
 Status:
 Występuje problem podczas wychodzenia z aplikacji. W logu kontenera po każdym wyjściu pojawia się komunikat:

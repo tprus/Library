@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.BookFront;
+import works.buddy.library.api.view.BooksFront;
 import works.buddy.library.dao.AuthorDAO;
 import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Author;
@@ -26,7 +27,7 @@ public class DefaultBookService implements BookService {
     private AuthorDAO authorDAO;
 
     @Override
-    public Collection<BookFront> getBooks() {
+    public BooksFront getBooks() {
         return getBookFronts(bookDAO.getBooks());
     }
 
@@ -45,12 +46,12 @@ public class DefaultBookService implements BookService {
         bookDAO.save(getBook(book));
     }
 
-    private Collection<BookFront> getBookFronts(Collection<Book> booksToMap) {
-        Collection<BookFront> mappedBooks = new ArrayList<>();
+    private BooksFront getBookFronts(Collection<Book> booksToMap) {
+        Collection<BookFront> bookFronts = new ArrayList<>();
         for (Book book : booksToMap) {
-            mappedBooks.add(new BookFront(book));
+            bookFronts.add(new BookFront(book));
         }
-        return mappedBooks;
+        return new BooksFront(bookFronts);
     }
 
     private AuthorFront getAuthorFront(Author authorToMap) {

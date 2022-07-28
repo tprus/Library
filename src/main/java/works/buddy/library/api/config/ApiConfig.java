@@ -1,5 +1,6 @@
 package works.buddy.library.api.config;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class ApiConfig {
         factoryBean.setResourceClasses(LibraryAPI.class);
         factoryBean.setAddress("http://localhost:8080/"); //todo wyciag do property
         factoryBean.setResourceProvider(new SingletonResourceProvider(restLibraryAPI));
+        factoryBean.setProvider(new JacksonJsonProvider());
         return factoryBean;
     }
 }

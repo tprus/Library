@@ -1,12 +1,11 @@
 package works.buddy.library.api.services;
 
 import works.buddy.library.api.view.BookFront;
-
-import java.util.Collection;
+import works.buddy.library.api.view.BooksFront;
 
 public interface BookService {
 
-    Collection<BookFront> getBooks();
+    BooksFront getBooks();
     BookFront getBook(Long id);
 
     void createBook(BookFront book);
