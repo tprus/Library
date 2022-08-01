@@ -6,6 +6,7 @@ import works.buddy.library.api.view.BooksFront;
 public interface BookService {
 
     BooksFront getBooks();
+
     BookFront getBook(Long id);
 
     void createBook(BookFront book);

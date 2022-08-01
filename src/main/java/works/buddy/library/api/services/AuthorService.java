@@ -8,4 +8,6 @@ public interface AuthorService {
     AuthorsFront getAuthors();
 
     AuthorFront getAuthor(Long authorId);
+
+    void createAuthor(AuthorFront author);
 }

@@ -31,7 +31,16 @@ public class DefaultAuthorService implements AuthorService {
 
     @Override
     public AuthorFront getAuthor(Long authorId) {
-        return getAuthorFront(authorDAO.GetAuthor(authorId));
+        return getAuthorFront(authorDAO.getAuthor(authorId));
+    }
+
+    @Override
+    public void createAuthor(AuthorFront author) {
+        authorDAO.save(getAuthor(author));
+    }
+
+    private Author getAuthor(AuthorFront author) {
+        return new Author(author);
     }
 
     private AuthorFront getAuthorFront(Author author) {

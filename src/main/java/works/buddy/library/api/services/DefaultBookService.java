@@ -67,10 +67,6 @@ public class DefaultBookService implements BookService {
         if (author == null) {
             throw new IllegalArgumentException("Author cannot be null");
         }
-        AuthorFront existingAuthor = getAuthorFront(authorDAO.getAuthorByFullName(book.getAuthor().getFirstName(), book.getAuthor().getLastName()));
-        if (book.getAuthor().equals(existingAuthor)) {
-            book.setAuthor(existingAuthor);
-        }
     }
 
 }

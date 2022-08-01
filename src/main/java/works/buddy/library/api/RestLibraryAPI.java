@@ -64,7 +64,7 @@ public class RestLibraryAPI implements LibraryAPI {
     @POST
     @Path("authors")
     public Response createAuthor(AuthorFront author) {
-//        authorService.createAuthor(author);
+        authorService.createAuthor(author);
         return Response.ok(author).build();
     }
 }

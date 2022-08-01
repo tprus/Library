@@ -1,6 +1,5 @@
 package works.buddy.library.dao;
 
-import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.model.Author;
 
 import java.util.Collection;
@@ -11,5 +10,7 @@ public interface AuthorDAO {
 
     Collection<Author> getAuthors();
 
-    Author GetAuthor(Long authorId);
+    Author getAuthor(Long authorId);
+
+    void save(Author author);
 }

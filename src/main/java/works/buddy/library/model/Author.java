@@ -1,5 +1,7 @@
 package works.buddy.library.model;
 
+import works.buddy.library.api.view.AuthorFront;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
@@ -33,6 +35,12 @@ public class Author implements Serializable {
     public Author(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Author(AuthorFront author) {
+        this.id = author.getId();
+        this.firstName = author.getFirstName();
+        this.lastName = author.getLastName();
     }
 
     @Override

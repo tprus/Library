@@ -3,7 +3,6 @@ package works.buddy.library.dao;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.model.Author;
 
 import java.util.Collection;
@@ -34,7 +33,12 @@ public class HibernateAuthorDAO extends AbstractHibernateDAO<Author> implements 
     }
 
     @Override
-    public Author GetAuthor(Long authorId) {
+    public Author getAuthor(Long authorId) {
         return findOne(authorId);
+    }
+
+    @Override
+    public void save(Author author) {
+        create(author);
     }
 }

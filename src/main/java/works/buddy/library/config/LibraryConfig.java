@@ -24,8 +24,7 @@ public class LibraryConfig {
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        Resource[] resources = new ClassPathResource[ ]
-                { new ClassPathResource( "hibernate.properties" ) };
+        Resource[] resources = new ClassPathResource[]{new ClassPathResource("hibernate.properties")};
         PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
         configurer.setLocations(resources);
         configurer.setNullValue("@null");
