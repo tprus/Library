@@ -9,5 +9,5 @@ public interface BookService {
 
     BookFront getBook(Integer id);
 
-    void createBook(BookFront book);
+    BookFront createBook(BookFront book);
 }

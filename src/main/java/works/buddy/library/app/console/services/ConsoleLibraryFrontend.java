@@ -11,7 +11,9 @@ import java.util.Scanner;
 @Service
 public class ConsoleLibraryFrontend implements LibraryFrontend {
 
-    public static final String WELCOME_MSG = "\nWelcome, select action:\n1. List all books\n2. List books by author ID\n3. List books by author\n4. List books by title\n5. Add a book to our collection\nexit. Exit\n";
+    public static final String WELCOME_MSG =
+            "\nWelcome, select action:\n1. List all books\n2. List books by author ID\n3. List books by author\n4. List books by title\n5. Add a book to our " +
+                    "collection\nexit. Exit\n";
 
     @Autowired
     private Scanner scanner;
@@ -55,10 +57,12 @@ public class ConsoleLibraryFrontend implements LibraryFrontend {
             System.out.println(book);
         }
     }
+
     @Override
-    public void listAuthor(Author author){
+    public void listAuthor(Author author) {
         System.out.println(author);
     }
+
     @Override
     public void sayGoodBye() {
         System.out.println("Good bye!");

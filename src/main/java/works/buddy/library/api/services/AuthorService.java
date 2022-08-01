@@ -9,5 +9,5 @@ public interface AuthorService {
 
     AuthorFront getAuthor(Integer authorId);
 
-    void createAuthor(AuthorFront author);
+    AuthorFront createAuthor(AuthorFront author);
 }

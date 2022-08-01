@@ -9,8 +9,6 @@ import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Service

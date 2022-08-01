@@ -49,6 +49,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable> implements Ge
     public List<T> findAll() {
         return getCurrentSession().createQuery("from " + getEntityClass().getName()).list();
     }
+
     protected Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }

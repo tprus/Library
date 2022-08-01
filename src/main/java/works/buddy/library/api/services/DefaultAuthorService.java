@@ -35,8 +35,10 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public void createAuthor(AuthorFront author) {
-        authorDAO.save(getAuthor(author));
+    public AuthorFront createAuthor(AuthorFront authorFront) {
+        authorDAO.save(getAuthor(authorFront));
+        AuthorFront returnedAuthor = getAuthorFront(authorDAO.findByFullName(authorFront.getFirstName(), authorFront.getLastName()));
+        return returnedAuthor;
     }
 
     private Author getAuthor(AuthorFront author) {

@@ -18,10 +18,6 @@ public class MemoryBookDAOTest {
 
     private static final Author SAMPLE_AUTHOR = new Author("Author", "Authorey");
 
-    private static final Author SAMPLE_AUTHOR2 = new Author("Jordan", "Peterson");
-
-    private static final Author SAMPLE_AUTHOR3 = new Author("Barney", "Stinson");
-
     private static final Collection<Book> SAMPLE_BOOKS = new HashSet<>(List.of(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR)));
 
     public static final String TOO_LONG_NAME = "It is a long established fact that a reader will be distracted by the readable content of a page when";

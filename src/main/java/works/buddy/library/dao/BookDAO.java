@@ -12,4 +12,5 @@ public interface BookDAO extends GenericDAO<Book> {
     Collection<Book> findByTitle(String title);
 
     Collection<Book> findByAuthor(Author author);
+
 }

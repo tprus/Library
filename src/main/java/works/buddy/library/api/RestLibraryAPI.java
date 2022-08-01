@@ -42,8 +42,8 @@ public class RestLibraryAPI implements LibraryAPI {
     @POST
     @Path("books")
     public Response createBook(BookFront book) {
-        bookService.createBook(book);
-        return Response.ok(book).build();
+        BookFront returnedBook = bookService.createBook(book);
+        return Response.ok(returnedBook).build();
     }
 
     @Override
@@ -64,7 +64,7 @@ public class RestLibraryAPI implements LibraryAPI {
     @POST
     @Path("authors")
     public Response createAuthor(AuthorFront author) {
-        authorService.createAuthor(author);
-        return Response.ok(author).build();
+        AuthorFront savedAuthor = authorService.createAuthor(author);
+        return Response.ok(savedAuthor).build();
     }
 }
