@@ -26,6 +26,16 @@ public class DefaultAuthorService implements AuthorService{
     public Collection<AuthorFront> getAuthors() {
         return getAuthorFronts(authorDAO.getAuthors());
     }
+
+    @Override
+    public AuthorFront getAuthor(Long authorId) {
+        return getAuthorFront(authorDAO.GetAuthor(authorId));
+    }
+
+    private AuthorFront getAuthorFront(Author author){
+        return new AuthorFront(author);
+    }
+
     private Collection<AuthorFront> getAuthorFronts(Collection<Author> authorsToMap){
         Collection<AuthorFront> mappedAuthors = new ArrayList<>();
         for (Author author : authorsToMap) {

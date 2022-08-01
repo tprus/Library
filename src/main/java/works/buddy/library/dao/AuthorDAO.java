@@ -10,4 +10,6 @@ public interface AuthorDAO {
     Author getAuthorByFullName(String firstName, String lastName);
 
     Collection<Author> getAuthors();
+
+    Author GetAuthor(Long authorId);
 }

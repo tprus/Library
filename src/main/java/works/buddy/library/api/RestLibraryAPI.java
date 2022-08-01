@@ -52,4 +52,18 @@ public class RestLibraryAPI implements LibraryAPI {
     public Collection<AuthorFront> getAuthors() {
         return authorService.getAuthors();
     }
+
+    @Override
+    @GET
+    @Path("authors/{id}")
+    public AuthorFront getAuthor(@PathParam("id") Long authorId) {
+        return authorService.getAuthor(authorId);
+    }
+
+    @Override
+    @POST
+    @Path("authors")
+    public Response createAuthor(AuthorFront author){
+        return null;
+    }
 }

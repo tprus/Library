@@ -9,15 +9,15 @@ public class BooksFront {
     public BooksFront() {
     }
 
+    public BooksFront(Collection<BookFront> books) {
+        this.books = books;
+    }
+
     public Collection<BookFront> getBooks() {
         return books;
     }
 
     public void setBooks(Collection<BookFront> books) {
-        this.books = books;
-    }
-
-    public BooksFront(Collection<BookFront> books) {
         this.books = books;
     }
 

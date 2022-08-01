@@ -32,4 +32,9 @@ public class HibernateAuthorDAO extends AbstractHibernateDAO<Author> implements 
     public Collection<Author> getAuthors() {
         return findAll();
     }
+
+    @Override
+    public Author GetAuthor(Long authorId) {
+        return findOne(authorId);
+    }
 }

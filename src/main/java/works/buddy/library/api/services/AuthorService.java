@@ -7,4 +7,6 @@ import java.util.Collection;
 public interface AuthorService {
 
     Collection<AuthorFront> getAuthors();
+
+    AuthorFront getAuthor(Long authorId);
 }
