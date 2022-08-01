@@ -30,7 +30,7 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public AuthorFront getAuthor(Long authorId) {
+    public AuthorFront getAuthor(Integer authorId) {
         return getAuthorFront(authorDAO.findOne(authorId));
     }
 

@@ -7,7 +7,7 @@ public interface AuthorService {
 
     AuthorsFront getAuthors();
 
-    AuthorFront getAuthor(Long authorId);
+    AuthorFront getAuthor(Integer authorId);
 
     void createAuthor(AuthorFront author);
 }

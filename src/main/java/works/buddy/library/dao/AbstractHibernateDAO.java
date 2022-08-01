@@ -33,7 +33,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable> implements Ge
     protected abstract Class<T> getEntityClass();
 
     @Override
-    public T findOne(final long id) {
+    public T findOne(final Integer id) {
         return (T) getCurrentSession().get(getEntityClass(), id);
     }
 

@@ -13,7 +13,7 @@ public class Author implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String firstName;
 
@@ -26,7 +26,7 @@ public class Author implements Serializable {
     public Author() {
     }
 
-    public Author(Long id, String firstName, String lastName) {
+    public Author(Integer id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -53,7 +53,7 @@ public class Author implements Serializable {
         return builder.toString();
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 

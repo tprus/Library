@@ -28,7 +28,7 @@ public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements Book
     }
     
     @Override
-    public Collection<Book> findByAuthorId(Long authorId) {
+    public Collection<Book> findByAuthorId(Integer authorId) {
         DetachedCriteria criteria = createCriteria();
         DetachedCriteria authorCriteria = getAuthorCriteria(criteria);
         authorCriteria.add(Restrictions.eq(ID, authorId));

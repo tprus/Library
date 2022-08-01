@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class AuthorFront {
 
-    private Long id;
+    private Integer id;
 
     private String firstName;
 
@@ -41,7 +41,7 @@ public class AuthorFront {
         return Objects.hash(getFirstName(), getLastName());
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -53,7 +53,7 @@ public class AuthorFront {
         return lastName;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

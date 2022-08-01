@@ -37,7 +37,7 @@ public class DefaultBookService implements BookService {
     }
 
     @Override
-    public BookFront getBook(Long id) {
+    public BookFront getBook(Integer id) {
         return getBookFront(bookDAO.findOne(id));
     }
 

@@ -11,13 +11,13 @@ public interface LibraryAPI {
 
     BooksFront getBooks();
 
-    BookFront getBook(Long bookId);
+    BookFront getBook(Integer bookId);
 
     Response createBook(BookFront book);
 
     AuthorsFront getAuthors();
 
-    AuthorFront getAuthor(Long authorId);
+    AuthorFront getAuthor(Integer authorId);
 
     Response createAuthor(AuthorFront author);
 }

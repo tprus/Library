@@ -6,7 +6,7 @@ import java.io.Serializable;
 
 public class BookFront implements Serializable {
 
-    private Long id;
+    private Integer id;
 
     private String title;
 
@@ -25,7 +25,7 @@ public class BookFront implements Serializable {
         this.title = title;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -37,7 +37,7 @@ public class BookFront implements Serializable {
         return author;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

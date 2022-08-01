@@ -7,7 +7,7 @@ import java.util.Collection;
 
 public interface BookDAO extends GenericDAO<Book> {
 
-    Collection<Book> findByAuthorId(Long authorId);
+    Collection<Book> findByAuthorId(Integer authorId);
 
     Collection<Book> findByTitle(String title);
 
