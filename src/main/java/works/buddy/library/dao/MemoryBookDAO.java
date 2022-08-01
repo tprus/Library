@@ -107,4 +107,9 @@ public class MemoryBookDAO implements BookDAO {
     public Collection<Book> findByAuthor(Author author) {
         return null;
     }
+
+    @Override
+    public Book findMostRecent() {
+        return null;
+    }
 }

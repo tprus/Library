@@ -13,4 +13,5 @@ public interface BookDAO extends GenericDAO<Book> {
 
     Collection<Book> findByAuthor(Author author);
 
+    Book findMostRecent();
 }

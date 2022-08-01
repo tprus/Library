@@ -15,7 +15,6 @@ import javax.ws.rs.BadRequestException;
 import javax.ws.rs.NotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 @Service
 @Transactional
@@ -45,18 +44,9 @@ public class DefaultBookService implements BookService {
     @Override
     public BookFront createBook(BookFront bookFront) {
         validate(bookFront);
-        BookFront returnedBook = getBookFront(getLastElement(bookDAO.findByTitle(bookFront.getTitle())));
+        BookFront returnedBook = getBookFront(bookDAO.findMostRecent());
         bookDAO.save(getBook(bookFront));
         return returnedBook;
-    }
-
-    public Book getLastElement(final Collection<Book> c) {
-        final Iterator itr = c.iterator();
-        Book lastElement = (Book) itr.next();
-        while (itr.hasNext()) {
-            lastElement = (Book) itr.next();
-        }
-        return lastElement;
     }
 
     private BooksFront getBookFronts(Collection<Book> booksToMap) {

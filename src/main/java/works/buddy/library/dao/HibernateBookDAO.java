@@ -1,6 +1,7 @@
 package works.buddy.library.dao;
 
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.SimpleExpression;
 import org.springframework.stereotype.Repository;
@@ -48,6 +49,14 @@ public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements Book
         DetachedCriteria authorCriteria = getAuthorCriteria(criteria);
         authorCriteria.add(Restrictions.and(getLike(FIRST_NAME, author.getFirstName()), getLike(LAST_NAME, author.getLastName())));
         return find(criteria);
+    }
+
+    //TODO this method needs to return the most recent book in the database - one with the highest id
+    @Override
+    public Book findMostRecent() {
+        DetachedCriteria bookWithMaxIdCriteria = createCriteria();
+        bookWithMaxIdCriteria.add(Restrictions.eq(ID, Projections.max(ID)));
+        return findOne(bookWithMaxIdCriteria);
     }
 
     private DetachedCriteria getAuthorCriteria(DetachedCriteria criteria) {
