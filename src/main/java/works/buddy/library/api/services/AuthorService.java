@@ -1,12 +1,11 @@
 package works.buddy.library.api.services;
 
 import works.buddy.library.api.view.AuthorFront;
-
-import java.util.Collection;
+import works.buddy.library.api.view.AuthorsFront;
 
 public interface AuthorService {
 
-    Collection<AuthorFront> getAuthors();
+    AuthorsFront getAuthors();
 
     AuthorFront getAuthor(Long authorId);
 }

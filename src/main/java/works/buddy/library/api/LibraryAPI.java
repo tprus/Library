@@ -1,15 +1,11 @@
 package works.buddy.library.api;
 
 import works.buddy.library.api.view.AuthorFront;
+import works.buddy.library.api.view.AuthorsFront;
 import works.buddy.library.api.view.BookFront;
 import works.buddy.library.api.view.BooksFront;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Response;
-import java.util.Collection;
 
 public interface LibraryAPI {
 
@@ -19,8 +15,7 @@ public interface LibraryAPI {
 
     Response createBook(BookFront book);
 
-    Collection<AuthorFront>  getAuthors();
-
+    AuthorsFront getAuthors();
 
     AuthorFront getAuthor(Long authorId);
 

@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 import works.buddy.library.api.services.AuthorService;
 import works.buddy.library.api.services.BookService;
 import works.buddy.library.api.view.AuthorFront;
+import works.buddy.library.api.view.AuthorsFront;
 import works.buddy.library.api.view.BookFront;
 import works.buddy.library.api.view.BooksFront;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
-import java.util.Collection;
 
 @Path("library")
 @Produces("application/json")
@@ -49,7 +49,7 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @GET
     @Path("authors")
-    public Collection<AuthorFront> getAuthors() {
+    public AuthorsFront getAuthors() {
         return authorService.getAuthors();
     }
 
@@ -63,7 +63,8 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @POST
     @Path("authors")
-    public Response createAuthor(AuthorFront author){
-        return null;
+    public Response createAuthor(AuthorFront author) {
+//        authorService.createAuthor(author);
+        return Response.ok(author).build();
     }
 }
