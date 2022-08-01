@@ -26,12 +26,7 @@ public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements Book
     protected Class<Book> getEntityClass() {
         return Book.class;
     }
-
-    @Override
-    public void save(Book book) {
-        this.save(book);
-    }
-
+    
     @Override
     public Collection<Book> findByAuthorId(Long authorId) {
         DetachedCriteria criteria = createCriteria();

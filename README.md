@@ -2,7 +2,7 @@ Uwagi:
 
 TODO
 
-- przebudowanie API do autora: najpierw osobno metoda POST do stworzenia autora, potem Metoda Post do stworzenia Książki z polem author_id
+- Dodaj walidację metod API tak, aby zwracały adekwatne kody błędów (np. "404 not found" kiedy dodajemy książkę z author_id nieistniejącym w bazie)
 - metoda createBook w RestLibraryAPI nie wczytuje danych
 
 Status:
