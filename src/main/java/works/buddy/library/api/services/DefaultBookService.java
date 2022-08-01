@@ -1,5 +1,7 @@
 package works.buddy.library.api.services;
 
+import org.apache.cxf.interceptor.Fault;
+import org.hibernate.boot.model.naming.IllegalIdentifierException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,12 @@ import works.buddy.library.dao.AuthorDAO;
 import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Book;
 
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.logging.Logger;
 
 @Service
 @Transactional
@@ -60,8 +66,12 @@ public class DefaultBookService implements BookService {
     private void validate(BookFront book) {
         AuthorFront author = book.getAuthor();
         if (author == null) {
-            throw new IllegalArgumentException("Author cannot be null");
+            throw new BadRequestException("Author id is required");
         }
+        if(authorDAO.findOne(author.getId()) == null){
+            throw new NotFoundException("Provide id of existing author");
+        }
+
     }
 
 }
