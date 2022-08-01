@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Repository
@@ -30,18 +29,11 @@ public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements Book
 
     @Override
     public void save(Book book) {
-        create(book);
+        this.save(book);
     }
 
     @Override
-    public Collection<Book> getBooks() {
-        ArrayList<Book> sortedBooks = (ArrayList<Book>) findAll();
-        sortedBooks.sort((o1, o2) -> Integer.compare(o1.getAuthor().getLastName().compareTo(o2.getAuthor().getLastName()), 0));
-        return sortedBooks;
-    }
-
-    @Override
-    public Collection<Book> getBooksByAuthorId(Long authorId) {
+    public Collection<Book> findByAuthorId(Long authorId) {
         DetachedCriteria criteria = createCriteria();
         DetachedCriteria authorCriteria = getAuthorCriteria(criteria);
         authorCriteria.add(Restrictions.eq(ID, authorId));
@@ -49,23 +41,18 @@ public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements Book
     }
 
     @Override
-    public Collection<Book> getBooksByTitle(String title) {
+    public Collection<Book> findByTitle(String title) {
         DetachedCriteria criteria = createCriteria();
         criteria.add(getLike(TITLE, title));
         return find(criteria);
     }
 
     @Override
-    public Collection<Book> getBooksByAuthor(Author author) {
+    public Collection<Book> findByAuthor(Author author) {
         DetachedCriteria criteria = createCriteria();
         DetachedCriteria authorCriteria = getAuthorCriteria(criteria);
         authorCriteria.add(Restrictions.and(getLike(FIRST_NAME, author.getFirstName()), getLike(LAST_NAME, author.getLastName())));
         return find(criteria);
-    }
-
-    @Override
-    public Book getBook(Long id) {
-        return findOne(id);
     }
 
     private DetachedCriteria getAuthorCriteria(DetachedCriteria criteria) {

@@ -26,12 +26,12 @@ public class DefaultAuthorService implements AuthorService {
 
     @Override
     public AuthorsFront getAuthors() {
-        return getAuthorFronts(authorDAO.getAuthors());
+        return getAuthorFronts(authorDAO.findAll());
     }
 
     @Override
     public AuthorFront getAuthor(Long authorId) {
-        return getAuthorFront(authorDAO.getAuthor(authorId));
+        return getAuthorFront(authorDAO.findOne(authorId));
     }
 
     @Override

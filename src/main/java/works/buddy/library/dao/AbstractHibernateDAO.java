@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class AbstractHibernateDAO<T extends Serializable> {
+public abstract class AbstractHibernateDAO<T extends Serializable> implements GenericDAO<T> {
 
     protected DetachedCriteria createCriteria() {
         return DetachedCriteria.forClass(getEntityClass());
@@ -18,8 +18,21 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
     @Autowired
     protected SessionFactory sessionFactory;
 
+    public void save(final T entity) {
+        getCurrentSession().saveOrUpdate(entity);
+    }
+
+    public void update(final T entity) {
+        getCurrentSession().merge(entity);
+    }
+
+    public void delete(final T entity) {
+        getCurrentSession().delete(entity);
+    }
+
     protected abstract Class<T> getEntityClass();
 
+    @Override
     public T findOne(final long id) {
         return (T) getCurrentSession().get(getEntityClass(), id);
     }
@@ -32,28 +45,10 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         return (T) criteria.getExecutableCriteria(getCurrentSession()).uniqueResult();
     }
 
+    @Override
     public List<T> findAll() {
         return getCurrentSession().createQuery("from " + getEntityClass().getName()).list();
     }
-
-    public T create(final T entity) {
-        getCurrentSession().saveOrUpdate(entity);
-        return entity;
-    }
-
-    public T update(final T entity) {
-        return (T) getCurrentSession().merge(entity);
-    }
-
-    public void delete(final T entity) {
-        getCurrentSession().delete(entity);
-    }
-
-    public void deleteById(final long entityId) {
-        final T entity = findOne(entityId);
-        delete(entity);
-    }
-
     protected Session getCurrentSession() {
         return sessionFactory.getCurrentSession();
     }

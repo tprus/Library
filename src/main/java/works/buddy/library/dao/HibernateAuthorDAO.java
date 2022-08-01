@@ -5,8 +5,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import works.buddy.library.model.Author;
 
-import java.util.Collection;
-
 @Repository
 public class HibernateAuthorDAO extends AbstractHibernateDAO<Author> implements AuthorDAO {
 
@@ -20,25 +18,10 @@ public class HibernateAuthorDAO extends AbstractHibernateDAO<Author> implements 
     }
 
     @Override
-    public Author getAuthorByFullName(String firstName, String lastName) {
+    public Author findByFullName(String firstName, String lastName) {
         DetachedCriteria criteria = createCriteria();
         criteria.add(Restrictions.eq(FIRST_NAME, firstName));
         criteria.add(Restrictions.eq(LAST_NAME, lastName));
         return findOne(criteria);
-    }
-
-    @Override
-    public Collection<Author> getAuthors() {
-        return findAll();
-    }
-
-    @Override
-    public Author getAuthor(Long authorId) {
-        return findOne(authorId);
-    }
-
-    @Override
-    public void save(Author author) {
-        create(author);
     }
 }

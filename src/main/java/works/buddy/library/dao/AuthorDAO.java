@@ -2,15 +2,7 @@ package works.buddy.library.dao;
 
 import works.buddy.library.model.Author;
 
-import java.util.Collection;
+public interface AuthorDAO extends GenericDAO<Author> {
 
-public interface AuthorDAO {
-
-    Author getAuthorByFullName(String firstName, String lastName);
-
-    Collection<Author> getAuthors();
-
-    Author getAuthor(Long authorId);
-
-    void save(Author author);
+    Author findByFullName(String firstName, String lastName);
 }

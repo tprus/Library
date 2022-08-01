@@ -42,6 +42,21 @@ public class MemoryBookDAO implements BookDAO {
         this.books.add(book);
     }
 
+    @Override
+    public void update(Book entity) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void delete(Book entity) {
+        this.books.remove(entity);
+    }
+
+    @Override
+    public Book findOne(long id) {
+        throw new UnsupportedOperationException();
+    }
+
     private void validate(Book book) {
         validateNotNull(book.getId(), "Id");
         if (books.contains(book)) {
@@ -74,29 +89,22 @@ public class MemoryBookDAO implements BookDAO {
     }
 
     @Override
-    public Collection<Book> getBooks() {
-        ArrayList<Book> sortedBooks = new ArrayList<>(books);
-        sortedBooks.sort((o1, o2) -> Integer.compare(o1.getAuthor().getLastName().compareTo(o2.getAuthor().getLastName()), 0));
-        return sortedBooks;
+    public List<Book> findAll() {
+        return new ArrayList<>(books);
     }
 
     @Override
-    public Collection<Book> getBooksByAuthorId(Long author) {
+    public Collection<Book> findByAuthorId(Long author) {
         return null;
     }
 
     @Override
-    public Collection<Book> getBooksByTitle(String title) {
+    public Collection<Book> findByTitle(String title) {
         return null;
     }
 
     @Override
-    public Collection<Book> getBooksByAuthor(Author author) {
-        return null;
-    }
-
-    @Override
-    public Book getBook(Long id) {
+    public Collection<Book> findByAuthor(Author author) {
         return null;
     }
 }

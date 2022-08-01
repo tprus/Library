@@ -9,6 +9,9 @@ import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 @Service
 @Transactional
@@ -30,7 +33,7 @@ public class ConsoleBookManager {
         while (true) {
             switch (response) {
                 case "1":
-                    libraryFrontend.listBooks(bookDAO.getBooks());
+                    libraryFrontend.listBooks(getSortedBooks());
                     break;
                 case "2":
                     getBooksByAuthorId();
@@ -58,11 +61,17 @@ public class ConsoleBookManager {
         }
     }
 
+    public List<Book> getSortedBooks() {
+        List<Book> sortedBooks = bookDAO.findAll();
+        sortedBooks.sort((o1, o2) -> Integer.compare(o1.getAuthor().getLastName().compareTo(o2.getAuthor().getLastName()), 0));
+        return sortedBooks;
+    }
+
     private void getAuthorByFullName() {
         libraryFrontend.askAuthorFirstName();
         String firstName = getResponse();
         libraryFrontend.askAuthorLastName();
-        libraryFrontend.listAuthor(AuthorDAO.getAuthorByFullName(firstName, getResponse()));
+        libraryFrontend.listAuthor(AuthorDAO.findByFullName(firstName, getResponse()));
     }
 
     private void printMainMenu() {
@@ -84,18 +93,18 @@ public class ConsoleBookManager {
 
     private void getBooksByAuthorId() {
         libraryFrontend.askId();
-        libraryFrontend.listBooks(bookDAO.getBooksByAuthorId(Long.valueOf(getResponse())));
+        libraryFrontend.listBooks(bookDAO.findByAuthorId(Long.valueOf(getResponse())));
     }
 
     private void getBooksByTitle() {
         libraryFrontend.askBookName();
-        libraryFrontend.listBooks(bookDAO.getBooksByTitle(getResponse()));
+        libraryFrontend.listBooks(bookDAO.findByTitle(getResponse()));
     }
 
     private void getBooksByAuthor() {
         libraryFrontend.askAuthorFirstName();
         String firstName = getResponse();
         libraryFrontend.askAuthorLastName();
-        libraryFrontend.listBooks(bookDAO.getBooksByAuthor(new Author(firstName, getResponse())));
+        libraryFrontend.listBooks(bookDAO.findByAuthor(new Author(firstName, getResponse())));
     }
 }

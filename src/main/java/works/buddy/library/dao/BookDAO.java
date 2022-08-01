@@ -5,17 +5,11 @@ import works.buddy.library.model.Book;
 
 import java.util.Collection;
 
-public interface BookDAO {
+public interface BookDAO extends GenericDAO<Book> {
 
-    void save(Book book);
+    Collection<Book> findByAuthorId(Long authorId);
 
-    Collection<Book> getBooks();
+    Collection<Book> findByTitle(String title);
 
-    Collection<Book> getBooksByAuthorId(Long authorId);
-
-    Collection<Book> getBooksByTitle(String title);
-
-    Collection<Book> getBooksByAuthor(Author author);
-
-    Book getBook(Long id);
+    Collection<Book> findByAuthor(Author author);
 }

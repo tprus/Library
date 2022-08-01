@@ -9,7 +9,6 @@ import works.buddy.library.api.view.BookFront;
 import works.buddy.library.api.view.BooksFront;
 import works.buddy.library.dao.AuthorDAO;
 import works.buddy.library.dao.BookDAO;
-import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
 import java.util.ArrayList;
@@ -28,12 +27,12 @@ public class DefaultBookService implements BookService {
 
     @Override
     public BooksFront getBooks() {
-        return getBookFronts(bookDAO.getBooks());
+        return getBookFronts(bookDAO.findAll());
     }
 
     @Override
     public BookFront getBook(Long id) {
-        return getBookFront(bookDAO.getBook(id));
+        return getBookFront(bookDAO.findOne(id));
     }
 
     private BookFront getBookFront(Book book) {
@@ -52,10 +51,6 @@ public class DefaultBookService implements BookService {
             bookFronts.add(new BookFront(book));
         }
         return new BooksFront(bookFronts);
-    }
-
-    private AuthorFront getAuthorFront(Author authorToMap) {
-        return new AuthorFront(authorToMap);
     }
 
     private Book getBook(BookFront book) {
