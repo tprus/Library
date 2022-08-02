@@ -11,13 +11,11 @@ public class MyDataSource extends BasicDataSource {
 
     @Override
     public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Connection getConnection(String username, String password) throws SQLException {
-        // TODO Auto-generated method stub
         return createDataSource().getConnection();
     }
 

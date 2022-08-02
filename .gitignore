@@ -8,3 +8,4 @@ target/
 /src/main/resources/hibernate.properties
 /data/demo.mv.db
 /data/demo.trace.db
+/src/main/resources/library_api.properties
