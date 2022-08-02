@@ -34,7 +34,7 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @GET
     @Path("books/{id}")
-    public BookFront getBook(@PathParam("id") Integer bookId) {
+    public BookFront getBook(@PathParam("id") String bookId) {
         return bookService.getBook(bookId);
     }
 
@@ -55,7 +55,7 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @GET
     @Path("authors/{id}")
-    public AuthorFront getAuthor(@PathParam("id") Integer authorId) {
+    public AuthorFront getAuthor(@PathParam("id") String authorId) {
         return authorService.getAuthor(authorId);
     }
 

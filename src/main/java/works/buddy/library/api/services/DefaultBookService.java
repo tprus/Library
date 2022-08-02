@@ -34,8 +34,9 @@ public class DefaultBookService implements BookService {
     }
 
     @Override
-    public BookFront getBook(Integer id) {
-        return getBookFront(bookDAO.findOne(id));
+    public BookFront getBook(String id) {
+        validateFindOne(id);
+        return getBookFront(bookDAO.findOne(Integer.valueOf(id)));
     }
 
     private BookFront getBookFront(Book book) {
@@ -63,15 +64,27 @@ public class DefaultBookService implements BookService {
         return new Book(book);
     }
 
+    private void validateFindOne(String id) {
+        Boolean containsOnlyNumbers = id != null && id.matches("[0-9.]+");
+        if (!containsOnlyNumbers) {
+            throw new BadRequestException("'id' has to be in Integer format");
+        }
+        Integer idFromString = Integer.valueOf(id);
+        Book book = bookDAO.findOne(idFromString);
+        if (book == null) {
+            throw new NotFoundException("There is no book with that ip");
+        }
+    }
+
     private void validate(BookFront book) {
         AuthorFront author = book.getAuthor();
-        if (book.getTitle() == null){
+        if (book.getTitle() == null) {
             throw new BadRequestException("'title' is required");
         }
-        if (book.getTitle().length() < ApiConstants.MIN_NAME_LENGTH){
+        if (book.getTitle().length() < ApiConstants.MIN_NAME_LENGTH) {
             throw new BadRequestException("'title' has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
         }
-        if (book.getTitle().length() > ApiConstants.MAX_NAME_LENGTH){
+        if (book.getTitle().length() > ApiConstants.MAX_NAME_LENGTH) {
             throw new BadRequestException("'title' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
         }
         if (author == null) {

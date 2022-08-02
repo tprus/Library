@@ -7,7 +7,7 @@ public interface AuthorService {
 
     AuthorsFront getAuthors();
 
-    AuthorFront getAuthor(Integer authorId);
+    AuthorFront getAuthor(String authorId);
 
     AuthorFront createAuthor(AuthorFront author);
 }

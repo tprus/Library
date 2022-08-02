@@ -7,7 +7,7 @@ public interface BookService {
 
     BooksFront getBooks();
 
-    BookFront getBook(Integer id);
+    BookFront getBook(String id);
 
     BookFront createBook(BookFront book);
 }

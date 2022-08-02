@@ -11,13 +11,13 @@ public interface LibraryAPI {
 
     BooksFront getBooks();
 
-    BookFront getBook(Integer bookId);
+    BookFront getBook(String bookId);
 
     Response createBook(BookFront book);
 
     AuthorsFront getAuthors();
 
-    AuthorFront getAuthor(Integer authorId);
+    AuthorFront getAuthor(String authorId);
 
     Response createAuthor(AuthorFront author);
 }

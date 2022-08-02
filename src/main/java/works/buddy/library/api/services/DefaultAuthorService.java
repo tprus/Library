@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import works.buddy.library.api.ApiConstants;
 import works.buddy.library.api.errors.BadRequestException;
+import works.buddy.library.api.errors.NotFoundException;
 import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.AuthorsFront;
 import works.buddy.library.dao.AuthorDAO;
@@ -26,8 +27,9 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     @Override
-    public AuthorFront getAuthor(Integer authorId) {
-        return getAuthorFront(authorDAO.findOne(authorId));
+    public AuthorFront getAuthor(String authorId) {
+        validateFindOne(authorId);
+        return getAuthorFront(authorDAO.findOne(Integer.valueOf(authorId)));
     }
 
     @Override
@@ -52,6 +54,18 @@ public class DefaultAuthorService implements AuthorService {
             mappedAuthors.add(new AuthorFront(author));
         }
         return new AuthorsFront(mappedAuthors);
+    }
+
+    private void validateFindOne(String id) {
+        Boolean containsOnlyNumbers = id != null && id.matches("[0-9.]+");
+        if (!containsOnlyNumbers) {
+            throw new BadRequestException("'id' has to be in Integer format");
+        }
+        Integer idFromString = Integer.valueOf(id);
+        Author author = authorDAO.findOne(idFromString);
+        if (author == null) {
+            throw new NotFoundException("There is no author with that ip");
+        }
     }
 
     private void validate(AuthorFront author) {
