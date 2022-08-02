@@ -25,7 +25,7 @@ public class ApiConfig {
         factoryBean.setResourceClasses(LibraryAPI.class);
         factoryBean.setAddress("http://localhost:8080/"); //todo wyciag do property
         factoryBean.setResourceProvider(new SingletonResourceProvider(restLibraryAPI));
-        factoryBean.setProviders(List.of(new JacksonJsonProvider(), new NotFoundExceptionMapper()));
+        factoryBean.setProviders(List.of(new JacksonJsonProvider(), new NotFoundExceptionMapper(), new BadRequestExceptionMapper()));
         return factoryBean;
     }
 }
