@@ -26,4 +26,6 @@ public interface LibraryAPI {
     Response createAuthor(AuthorFront author);
 
     Response updateAuthor(String id, AuthorFront author);
+
+    Response deleteAuthor(String id);
 }

@@ -56,10 +56,9 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @DELETE
     @Path("books/{id}")
-    public Response deleteBook(@PathParam("id") String id){
+    public Response deleteBook(@PathParam("id") String id) {
         return Response.ok(bookService.deleteBook(id)).build();
     }
-
 
     @Override
     @GET
@@ -86,9 +85,15 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @PUT
     @Path("authors/{id}")
-    public Response updateAuthor(@PathParam("id") String id, AuthorFront author)
-    {
-        AuthorFront returned = authorService.updateAuthor( id, author);
+    public Response updateAuthor(@PathParam("id") String id, AuthorFront author) {
+        AuthorFront returned = authorService.updateAuthor(id, author);
         return Response.ok(returned).build();
+    }
+
+    @Override
+    @DELETE
+    @Path("authors/{id}")
+    public Response deleteAuthor(@PathParam("id") String id) {
+        return Response.ok(authorService.deleteBook(id)).build();
     }
 }

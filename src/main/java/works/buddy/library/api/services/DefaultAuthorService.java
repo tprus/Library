@@ -49,6 +49,14 @@ public class DefaultAuthorService implements AuthorService {
         return getAuthorFront(author);
     }
 
+    @Override
+    public AuthorFront deleteBook(String id) {
+        validateId(id);
+        Author returnedObject = authorDAO.findOne(Integer.valueOf(id));
+        authorDAO.delete(returnedObject);
+        return getAuthorFront(returnedObject);
+    }
+
     private Author getAuthor(AuthorFront author) {
         return new Author(author);
     }

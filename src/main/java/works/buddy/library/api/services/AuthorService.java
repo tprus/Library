@@ -12,4 +12,6 @@ public interface AuthorService {
     AuthorFront createAuthor(AuthorFront author);
 
     AuthorFront updateAuthor(String id, AuthorFront author);
+
+    AuthorFront deleteBook(String id);
 }
