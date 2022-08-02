@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Configuration;
 import works.buddy.library.api.LibraryAPI;
 import works.buddy.library.api.RestLibraryAPI;
 
+import java.util.List;
+
 @Configuration
 @ComponentScan(basePackages = "works.buddy.library")
 public class ApiConfig {
@@ -23,7 +25,7 @@ public class ApiConfig {
         factoryBean.setResourceClasses(LibraryAPI.class);
         factoryBean.setAddress("http://localhost:8080/"); //todo wyciag do property
         factoryBean.setResourceProvider(new SingletonResourceProvider(restLibraryAPI));
-        factoryBean.setProvider(new JacksonJsonProvider());
+        factoryBean.setProviders(List.of(new JacksonJsonProvider(), new NotFoundExceptionMapper()));
         return factoryBean;
     }
 }
