@@ -5,8 +5,6 @@ import works.buddy.library.api.view.AuthorsFront;
 import works.buddy.library.api.view.BookFront;
 import works.buddy.library.api.view.BooksFront;
 
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
 public interface LibraryAPI {
@@ -24,4 +22,6 @@ public interface LibraryAPI {
     AuthorFront getAuthor(String authorId);
 
     Response createAuthor(AuthorFront author);
+
+    Response updateAuthor(String id, AuthorFront author);
 }

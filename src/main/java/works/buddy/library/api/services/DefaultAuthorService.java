@@ -28,15 +28,24 @@ public class DefaultAuthorService implements AuthorService {
 
     @Override
     public AuthorFront getAuthor(String authorId) {
-        validateFindOne(authorId);
+        validateId(authorId);
         return getAuthorFront(authorDAO.findOne(Integer.valueOf(authorId)));
     }
 
     @Override
     public AuthorFront createAuthor(AuthorFront authorFront) {
-        validate(authorFront);
+        validateAuthorFront(authorFront);
         Author author = getAuthor(authorFront);
         authorDAO.save(author);
+        return getAuthorFront(author);
+    }
+
+    @Override
+    public AuthorFront updateAuthor(String id, AuthorFront authorFront) {
+        validateUpdate(id, authorFront);
+        Author author = authorDAO.findOne(Integer.valueOf(id));
+        author.setFirstName(authorFront.getFirstName());
+        author.setLastName(authorFront.getLastName());
         return getAuthorFront(author);
     }
 
@@ -56,7 +65,10 @@ public class DefaultAuthorService implements AuthorService {
         return new AuthorsFront(mappedAuthors);
     }
 
-    private void validateFindOne(String id) {
+    private void validateId(String id) {
+        if (id == null) {
+            throw new BadRequestException("'id' is required");
+        }
         if (!containsOnlyNumbers(id)) {
             throw new BadRequestException("'id' has to be in Integer format");
         }
@@ -67,7 +79,12 @@ public class DefaultAuthorService implements AuthorService {
         }
     }
 
-    private void validate(AuthorFront author) {
+    private void validateUpdate(String id, AuthorFront author) {
+        validateId(id);
+        validateAuthorFront(author);
+    }
+
+    private void validateAuthorFront(AuthorFront author) {
         if (author.getFirstName() == null) {
             throw new BadRequestException("Authors 'firstName' is required");
         }
@@ -87,7 +104,8 @@ public class DefaultAuthorService implements AuthorService {
             throw new BadRequestException("Authors 'lastName' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
         }
     }
-    private Boolean containsOnlyNumbers(String s){
-        return s != null && s.matches("[0-9.]+");
+
+    private Boolean containsOnlyNumbers(String s) {
+        return s.matches("[0-9.]+");
     }
 }

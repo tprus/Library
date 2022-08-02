@@ -118,6 +118,6 @@ public class DefaultBookService implements BookService {
     }
 
     private Boolean containsOnlyNumbers(String s){
-        return s != null && s.matches("[0-9.]+");
+        return s.matches("[0-9.]+");
     }
 }

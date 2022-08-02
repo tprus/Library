@@ -74,4 +74,13 @@ public class RestLibraryAPI implements LibraryAPI {
         AuthorFront savedAuthor = authorService.createAuthor(author);
         return Response.ok(savedAuthor).build();
     }
+
+    @Override
+    @PUT
+    @Path("authors/{id}")
+    public Response updateAuthor(@PathParam("id") String id, AuthorFront author)
+    {
+        AuthorFront returned = authorService.updateAuthor( id, author);
+        return Response.ok(returned).build();
+    }
 }

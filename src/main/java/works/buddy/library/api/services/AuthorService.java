@@ -10,4 +10,6 @@ public interface AuthorService {
     AuthorFront getAuthor(String authorId);
 
     AuthorFront createAuthor(AuthorFront author);
+
+    AuthorFront updateAuthor(String id, AuthorFront author);
 }
