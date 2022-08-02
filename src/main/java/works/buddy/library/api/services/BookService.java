@@ -10,4 +10,6 @@ public interface BookService {
     BookFront getBook(String id);
 
     BookFront createBook(BookFront book);
+
+    BookFront updateBook(String bookId, BookFront book);
 }

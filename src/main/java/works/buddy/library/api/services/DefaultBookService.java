@@ -12,6 +12,7 @@ import works.buddy.library.api.view.BookFront;
 import works.buddy.library.api.view.BooksFront;
 import works.buddy.library.dao.AuthorDAO;
 import works.buddy.library.dao.BookDAO;
+import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class DefaultBookService implements BookService {
 
     @Override
     public BookFront getBook(String id) {
-        validateFindOne(id);
+        validateId(id);
         return getBookFront(bookDAO.findOne(Integer.valueOf(id)));
     }
 
@@ -45,11 +46,20 @@ public class DefaultBookService implements BookService {
 
     @Override
     public BookFront createBook(BookFront bookFront) {
-        validate(bookFront);
+        validateBookFront(bookFront);
         Book book = getBook(bookFront);
         book.setAuthor(authorDAO.findOne(bookFront.getAuthor().getId()));
         bookDAO.save(book);
         return new BookFront(book);
+    }
+
+    @Override
+    public BookFront updateBook(String bookId, BookFront bookFront) {
+        validateUpdate(bookId, bookFront);
+        Book book = bookDAO.findOne(Integer.valueOf(bookId));
+        book.setAuthor(authorDAO.findOne(bookFront.getAuthor().getId()));
+        book.setTitle(bookFront.getTitle());
+        return getBookFront(book);
     }
 
     private BooksFront getBookFronts(Collection<Book> booksToMap) {
@@ -64,9 +74,13 @@ public class DefaultBookService implements BookService {
         return new Book(book);
     }
 
-    private void validateFindOne(String id) {
-        Boolean containsOnlyNumbers = id != null && id.matches("[0-9.]+");
-        if (!containsOnlyNumbers) {
+    private Author getAuthor (AuthorFront authorFront) {return new Author(authorFront);}
+
+    private void validateId(String id) {
+        if (id == null){
+            throw new BadRequestException("'id' is required");
+        }
+        if (!containsOnlyNumbers(id)) {
             throw new BadRequestException("'id' has to be in Integer format");
         }
         Integer idFromString = Integer.valueOf(id);
@@ -76,7 +90,12 @@ public class DefaultBookService implements BookService {
         }
     }
 
-    private void validate(BookFront book) {
+    private void validateUpdate(String bookId, BookFront bookFront){
+        validateId(bookId);
+        validateBookFront(bookFront);
+    }
+
+    private void validateBookFront(BookFront book) {
         AuthorFront author = book.getAuthor();
         if (book.getTitle() == null) {
             throw new BadRequestException("'title' is required");
@@ -96,5 +115,9 @@ public class DefaultBookService implements BookService {
         if (authorDAO.findOne(author.getId()) == null) {
             throw new NotFoundException("Author with such id cannot be found");
         }
+    }
+
+    private Boolean containsOnlyNumbers(String s){
+        return s != null && s.matches("[0-9.]+");
     }
 }

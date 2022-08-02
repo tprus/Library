@@ -46,6 +46,14 @@ public class RestLibraryAPI implements LibraryAPI {
     }
 
     @Override
+    @PUT
+    @Path("books/{id}")
+    public Response updateBook(@PathParam("id") String id, BookFront book) {
+        BookFront savedBookFront = bookService.updateBook(id, book);
+        return Response.ok(savedBookFront).build();
+    }
+
+    @Override
     @GET
     @Path("authors")
     public AuthorsFront getAuthors() {

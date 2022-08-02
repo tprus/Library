@@ -57,8 +57,7 @@ public class DefaultAuthorService implements AuthorService {
     }
 
     private void validateFindOne(String id) {
-        Boolean containsOnlyNumbers = id != null && id.matches("[0-9.]+");
-        if (!containsOnlyNumbers) {
+        if (!containsOnlyNumbers(id)) {
             throw new BadRequestException("'id' has to be in Integer format");
         }
         Integer idFromString = Integer.valueOf(id);
@@ -87,5 +86,8 @@ public class DefaultAuthorService implements AuthorService {
         if (author.getLastName().length() > ApiConstants.MAX_NAME_LENGTH) {
             throw new BadRequestException("Authors 'lastName' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
         }
+    }
+    private Boolean containsOnlyNumbers(String s){
+        return s != null && s.matches("[0-9.]+");
     }
 }

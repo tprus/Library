@@ -79,4 +79,8 @@ public class Book implements Serializable {
     public void setAuthor(Author author) {
         this.author = author;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

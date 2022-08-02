@@ -19,11 +19,11 @@ public abstract class AbstractHibernateDAO<T extends Serializable> implements Ge
     protected SessionFactory sessionFactory;
 
     public void save(final T entity) {
-        getCurrentSession().saveOrUpdate(entity);
+        getCurrentSession().persist(entity);
     }
 
     public void update(final T entity) {
-        getCurrentSession().merge(entity);
+        getCurrentSession().update(entity);
     }
 
     public void delete(final T entity) {
