@@ -1,13 +1,11 @@
 package works.buddy.library.api.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.AuthorsFront;
 import works.buddy.library.dao.AuthorDAO;
-import works.buddy.library.dao.BookDAO;
 import works.buddy.library.model.Author;
 
 import java.util.ArrayList;
@@ -16,10 +14,6 @@ import java.util.Collection;
 @Service
 @Transactional
 public class DefaultAuthorService implements AuthorService {
-
-    @Autowired
-    @Qualifier("hibernateBookDAO")
-    private BookDAO bookDAO;
 
     @Autowired
     private AuthorDAO authorDAO;
@@ -36,9 +30,9 @@ public class DefaultAuthorService implements AuthorService {
 
     @Override
     public AuthorFront createAuthor(AuthorFront authorFront) {
-        authorDAO.save(getAuthor(authorFront));
-        AuthorFront returnedAuthor = getAuthorFront(authorDAO.findByFullName(authorFront.getFirstName(), authorFront.getLastName()));
-        return returnedAuthor;
+        Author author = getAuthor(authorFront);
+        authorDAO.save(author);
+        return getAuthorFront(author);
     }
 
     private Author getAuthor(AuthorFront author) {

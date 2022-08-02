@@ -21,10 +21,6 @@ public class BookFront implements Serializable {
         this.author = new AuthorFront(book.getAuthor());
     }
 
-    public BookFront(String title) {
-        this.title = title;
-    }
-
     public Integer getId() {
         return id;
     }

@@ -44,9 +44,10 @@ public class DefaultBookService implements BookService {
     @Override
     public BookFront createBook(BookFront bookFront) {
         validate(bookFront);
-        BookFront returnedBook = getBookFront(bookDAO.findMostRecent());
-        bookDAO.save(getBook(bookFront));
-        return returnedBook;
+        Book book = getBook(bookFront);
+        book.setAuthor(authorDAO.findOne(bookFront.getAuthor().getId()));
+        bookDAO.save(book);
+        return new BookFront(book);
     }
 
     private BooksFront getBookFronts(Collection<Book> booksToMap) {
@@ -64,12 +65,13 @@ public class DefaultBookService implements BookService {
     private void validate(BookFront book) {
         AuthorFront author = book.getAuthor();
         if (author == null) {
-            throw new BadRequestException("Author id is required");
+            throw new BadRequestException("'author' is required");
+        }
+        if (author.getId() == null) {
+            throw new BadRequestException("'author.id' is required");
         }
         if (authorDAO.findOne(author.getId()) == null) {
-            throw new NotFoundException("Provide id of existing author");
+            throw new NotFoundException("Author with such id cannot be found");
         }
-
     }
-
 }

@@ -108,8 +108,4 @@ public class MemoryBookDAO implements BookDAO {
         return null;
     }
 
-    @Override
-    public Book findMostRecent() {
-        return null;
-    }
 }

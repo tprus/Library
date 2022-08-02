@@ -20,5 +20,4 @@ public class BooksFront {
     public void setBooks(Collection<BookFront> books) {
         this.books = books;
     }
-
 }
