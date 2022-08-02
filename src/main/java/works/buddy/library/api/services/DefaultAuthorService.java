@@ -56,22 +56,22 @@ public class DefaultAuthorService implements AuthorService {
 
     private void validate(AuthorFront author) {
         if (author.getFirstName() == null) {
-            throw new BadRequestException("Authors first name is required");
+            throw new BadRequestException("Authors 'firstName' is required");
         }
         if (author.getFirstName().length() < ApiConstants.MIN_NAME_LENGTH) {
-            throw new BadRequestException("Authors first name has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
+            throw new BadRequestException("Authors 'firstName' has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
         }
         if (author.getFirstName().length() > ApiConstants.MAX_NAME_LENGTH) {
-            throw new BadRequestException("Authors first name has to be longer than " + ApiConstants.MAX_NAME_LENGTH + " characters");
+            throw new BadRequestException("Authors 'firstName' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
         }
         if (author.getLastName() == null) {
-            throw new BadRequestException("Authors last name is required");
+            throw new BadRequestException("Authors 'lastName' is required");
         }
         if (author.getLastName().length() < ApiConstants.MIN_NAME_LENGTH) {
-            throw new BadRequestException("Authors last name has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
+            throw new BadRequestException("Authors 'lastName' has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
         }
         if (author.getLastName().length() > ApiConstants.MAX_NAME_LENGTH) {
-            throw new BadRequestException("Authors last name has to be longer than " + ApiConstants.MAX_NAME_LENGTH + " characters");
+            throw new BadRequestException("Authors 'lastName' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
         }
     }
 }

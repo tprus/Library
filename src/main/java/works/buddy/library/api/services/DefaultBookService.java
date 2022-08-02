@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import works.buddy.library.api.ApiConstants;
 import works.buddy.library.api.errors.BadRequestException;
 import works.buddy.library.api.errors.NotFoundException;
 import works.buddy.library.api.view.AuthorFront;
@@ -64,6 +65,15 @@ public class DefaultBookService implements BookService {
 
     private void validate(BookFront book) {
         AuthorFront author = book.getAuthor();
+        if (book.getTitle() == null){
+            throw new BadRequestException("'title' is required");
+        }
+        if (book.getTitle().length() < ApiConstants.MIN_NAME_LENGTH){
+            throw new BadRequestException("'title' has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
+        }
+        if (book.getTitle().length() > ApiConstants.MAX_NAME_LENGTH){
+            throw new BadRequestException("'title' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
+        }
         if (author == null) {
             throw new BadRequestException("'author' is required");
         }
