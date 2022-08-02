@@ -54,6 +54,14 @@ public class RestLibraryAPI implements LibraryAPI {
     }
 
     @Override
+    @DELETE
+    @Path("books/{id}")
+    public Response deleteBook(@PathParam("id") String id){
+        return Response.ok(bookService.deleteBook(id)).build();
+    }
+
+
+    @Override
     @GET
     @Path("authors")
     public AuthorsFront getAuthors() {

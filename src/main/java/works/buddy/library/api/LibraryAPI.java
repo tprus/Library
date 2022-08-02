@@ -17,6 +17,8 @@ public interface LibraryAPI {
 
     Response createBook(BookFront book);
 
+    Response deleteBook(String id);
+
     AuthorsFront getAuthors();
 
     AuthorFront getAuthor(String authorId);

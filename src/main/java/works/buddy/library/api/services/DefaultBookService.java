@@ -12,7 +12,6 @@ import works.buddy.library.api.view.BookFront;
 import works.buddy.library.api.view.BooksFront;
 import works.buddy.library.dao.AuthorDAO;
 import works.buddy.library.dao.BookDAO;
-import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
 import java.util.ArrayList;
@@ -62,6 +61,14 @@ public class DefaultBookService implements BookService {
         return getBookFront(book);
     }
 
+    @Override
+    public BookFront deleteBook(String id) {
+        validateId(id);
+        Book returnedObject = bookDAO.findOne(Integer.valueOf(id));
+        bookDAO.delete(returnedObject);
+        return getBookFront(returnedObject);
+    }
+
     private BooksFront getBookFronts(Collection<Book> booksToMap) {
         Collection<BookFront> bookFronts = new ArrayList<>();
         for (Book book : booksToMap) {
@@ -74,10 +81,8 @@ public class DefaultBookService implements BookService {
         return new Book(book);
     }
 
-    private Author getAuthor (AuthorFront authorFront) {return new Author(authorFront);}
-
     private void validateId(String id) {
-        if (id == null){
+        if (id == null) {
             throw new BadRequestException("'id' is required");
         }
         if (!containsOnlyNumbers(id)) {
@@ -90,7 +95,7 @@ public class DefaultBookService implements BookService {
         }
     }
 
-    private void validateUpdate(String bookId, BookFront bookFront){
+    private void validateUpdate(String bookId, BookFront bookFront) {
         validateId(bookId);
         validateBookFront(bookFront);
     }
@@ -117,7 +122,7 @@ public class DefaultBookService implements BookService {
         }
     }
 
-    private Boolean containsOnlyNumbers(String s){
+    private Boolean containsOnlyNumbers(String s) {
         return s.matches("[0-9.]+");
     }
 }

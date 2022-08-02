@@ -12,4 +12,6 @@ public interface BookService {
     BookFront createBook(BookFront book);
 
     BookFront updateBook(String bookId, BookFront book);
+
+    BookFront deleteBook(String id);
 }
