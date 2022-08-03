@@ -112,7 +112,6 @@ public abstract class AbstractDefaultService {
     }
 
     protected void validateBookFront(BookFront book) {
-        AuthorFront author = book.getAuthor();
         if (book.getTitle() == null) {
             throw new BadRequestException("'title' is required");
         }
@@ -122,6 +121,7 @@ public abstract class AbstractDefaultService {
         if (book.getTitle().length() > ApiConstants.MAX_NAME_LENGTH) {
             throw new BadRequestException("'title' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
         }
+        AuthorFront author = book.getAuthor();
         if (author == null) {
             throw new BadRequestException("'author' is required");
         }
