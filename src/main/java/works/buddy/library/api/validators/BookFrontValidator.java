@@ -22,6 +22,12 @@ public class BookFrontValidator {
     @Autowired
     protected AuthorDAO authorDAO;
 
+    private final String TITLE = "title";
+    private final String AUTHOR = "author";
+    private final String ID = "id";
+    private final String LONGER = "longer";
+    private final String SHORTER = "shorter";
+
     public void validateBookId(Integer id) {
         if (id == null) {
             throw new BadRequestException(2, "id");
@@ -34,23 +40,23 @@ public class BookFrontValidator {
 
     public void validateBookFront(BookFront book) {
         if (book.getTitle() == null) {
-            throw new BadRequestException(2, "title");
+            throw new BadRequestException(2, TITLE);
         }
         if (book.getTitle().length() < ApiConstants.MIN_NAME_LENGTH) {
-            throw new BadRequestException(3, "title", "longer", ApiConstants.MIN_NAME_LENGTH);
+            throw new BadRequestException(3, TITLE, LONGER, ApiConstants.MIN_NAME_LENGTH);
         }
         if (book.getTitle().length() > ApiConstants.MAX_NAME_LENGTH) {
-            throw new BadRequestException(3, "title", "shorter", ApiConstants.MAX_NAME_LENGTH);
+            throw new BadRequestException(3, TITLE, SHORTER, ApiConstants.MAX_NAME_LENGTH);
         }
         AuthorFront author = book.getAuthor();
         if (author == null) {
-            throw new BadRequestException(2, "author");
+            throw new BadRequestException(2,AUTHOR);
         }
         if (author.getId() == null) {
-            throw new BadRequestException(2, "id");
+            throw new BadRequestException(2, ID);
         }
         if (authorDAO.findOne(author.getId()) == null) {
-            throw new NotFoundException(1, "author", author.getId());
+            throw new NotFoundException(1, AUTHOR, author.getId());
         }
     }
 

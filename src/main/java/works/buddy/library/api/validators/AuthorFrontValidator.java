@@ -21,34 +21,41 @@ public class AuthorFrontValidator {
     @Autowired
     private AuthorDAO authorDAO;
 
+    private final String FIRSTNAME = "firstName";
+    private final String LASTNAME = "lastName";
+    private final String AUTHOR = "author";
+    private final String ID = "id";
+    private final String LONGER = "longer";
+    private final String SHORTER = "shorter";
+
     public void validateAuthorId(Integer id) {
         if (id == null) {
-            throw new BadRequestException(2, "id");
+            throw new BadRequestException(2, ID);
         }
         Author author = authorDAO.findOne(id);
         if (author == null) {
-            throw new NotFoundException(1, "author", id);
+            throw new NotFoundException(1, AUTHOR, id);
         }
     }
 
     public void validateAuthorFront(AuthorFront author) {
         if (author.getFirstName() == null) {
-            throw new BadRequestException(2, "firstName");
+            throw new BadRequestException(2, FIRSTNAME);
         }
         if (author.getFirstName().length() < ApiConstants.MIN_NAME_LENGTH) {
-            throw new BadRequestException(3, "firstName", "longer", ApiConstants.MIN_NAME_LENGTH);
+            throw new BadRequestException(3, FIRSTNAME, LONGER, ApiConstants.MIN_NAME_LENGTH);
         }
         if (author.getFirstName().length() > ApiConstants.MAX_NAME_LENGTH) {
-            throw new BadRequestException(3, "firstName", "shorter", ApiConstants.MAX_NAME_LENGTH);
+            throw new BadRequestException(3, FIRSTNAME, SHORTER, ApiConstants.MAX_NAME_LENGTH);
         }
         if (author.getLastName() == null) {
-            throw new BadRequestException(2, "lastName");
+            throw new BadRequestException(2, LASTNAME);
         }
         if (author.getLastName().length() < ApiConstants.MIN_NAME_LENGTH) {
-            throw new BadRequestException(3, "lastName", "longer", ApiConstants.MIN_NAME_LENGTH);
+            throw new BadRequestException(3, LASTNAME, LONGER, ApiConstants.MIN_NAME_LENGTH);
         }
         if (author.getLastName().length() > ApiConstants.MAX_NAME_LENGTH) {
-            throw new BadRequestException(3, "lastName", "shorter", ApiConstants.MAX_NAME_LENGTH);
+            throw new BadRequestException(3, LASTNAME, SHORTER, ApiConstants.MAX_NAME_LENGTH);
         }
     }
 
