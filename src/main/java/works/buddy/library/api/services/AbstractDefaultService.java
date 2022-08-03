@@ -58,21 +58,13 @@ public abstract class AbstractDefaultService {
         return new BooksFront(bookFronts);
     }
 
-    private Boolean containsOnlyNumbers(String s) {
-        return s.matches("[0-9.]+");
-    }
-
-    protected void validateAuthorId(String id) {
+    protected void validateAuthorId(Integer id) {
         if (id == null) {
             throw new BadRequestException("'id' is required");
         }
-        if (!containsOnlyNumbers(id)) {
-            throw new BadRequestException("'id' has to be in Integer format");
-        }
-        Integer idFromString = Integer.valueOf(id);
-        Author author = authorDAO.findOne(idFromString);
+        Author author = authorDAO.findOne(id);
         if (author == null) {
-            throw new NotFoundException("There is no author with that ip");
+            throw new NotFoundException("There is no author with that id");
         }
     }
 
@@ -97,17 +89,13 @@ public abstract class AbstractDefaultService {
         }
     }
 
-    protected void validateBookId(String id) {
+    protected void validateBookId(Integer id) {
         if (id == null) {
             throw new BadRequestException("'id' is required");
         }
-        if (!containsOnlyNumbers(id)) {
-            throw new BadRequestException("'id' has to be in Integer format");
-        }
-        Integer idFromString = Integer.valueOf(id);
-        Book book = bookDAO.findOne(idFromString);
+        Book book = bookDAO.findOne(id);
         if (book == null) {
-            throw new NotFoundException("There is no book with that ip");
+            throw new NotFoundException("There is no book with that id");
         }
     }
 
@@ -133,12 +121,12 @@ public abstract class AbstractDefaultService {
         }
     }
 
-    protected void validateUpdateAuthor(String id, AuthorFront author) {
+    protected void validateUpdateAuthor(Integer id, AuthorFront author) {
         validateAuthorId(id);
         validateAuthorFront(author);
     }
 
-    protected void validateUpdateBookFront(String bookId, BookFront bookFront) {
+    protected void validateUpdateBookFront(Integer bookId, BookFront bookFront) {
         validateBookId(bookId);
         validateBookFront(bookFront);
     }

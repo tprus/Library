@@ -16,13 +16,13 @@ public class DefaultAuthorService extends AbstractDefaultService implements Auth
     }
 
     @Override
-    public AuthorFront getAuthor(String authorId) {
+    public AuthorFront getAuthor(Integer authorId) {
         validateAuthorId(authorId);
-        return getAuthorFront(authorDAO.findOne(Integer.valueOf(authorId)));
+        return getAuthorFront(authorDAO.findOne(authorId));
     }
 
     @Override
-    public AuthorFront createAuthor(AuthorFront authorFront) {
+    public AuthorFront addAuthor(AuthorFront authorFront) {
         validateAuthorFront(authorFront);
         Author author = getAuthor(authorFront);
         authorDAO.save(author);
@@ -30,20 +30,19 @@ public class DefaultAuthorService extends AbstractDefaultService implements Auth
     }
 
     @Override
-    public AuthorFront updateAuthor(String id, AuthorFront authorFront) {
+    public AuthorFront updateAuthor(Integer id, AuthorFront authorFront) {
         validateUpdateAuthor(id, authorFront);
-        Author author = authorDAO.findOne(Integer.valueOf(id));
+        Author author = authorDAO.findOne(id);
         author.setFirstName(authorFront.getFirstName());
         author.setLastName(authorFront.getLastName());
         return getAuthorFront(author);
     }
 
     @Override
-    public AuthorFront deleteBook(String id) {
+    public void deleteBook(Integer id) {
         validateAuthorId(id);
         Author returnedObject = authorDAO.findOne(Integer.valueOf(id));
         authorDAO.delete(returnedObject);
-        return getAuthorFront(returnedObject);
     }
 
 }

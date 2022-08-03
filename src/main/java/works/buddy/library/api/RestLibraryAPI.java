@@ -34,21 +34,21 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @GET
     @Path("books/{id}")
-    public BookFront getBook(@PathParam("id") String bookId) {
+    public BookFront getBook(@PathParam("id") Integer bookId) {
         return bookService.getBook(bookId);
     }
 
     @Override
     @POST
     @Path("books")
-    public Response createBook(BookFront book) {
-        return Response.ok(bookService.createBook(book)).build();
+    public Response addBook(BookFront book) {
+        return Response.ok(bookService.addBook(book)).build();
     }
 
     @Override
     @PUT
     @Path("books/{id}")
-    public Response updateBook(@PathParam("id") String id, BookFront book) {
+    public Response updateBook(@PathParam("id") Integer id, BookFront book) {
         BookFront savedBookFront = bookService.updateBook(id, book);
         return Response.ok(savedBookFront).build();
     }
@@ -56,8 +56,9 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @DELETE
     @Path("books/{id}")
-    public Response deleteBook(@PathParam("id") String id) {
-        return Response.ok(bookService.deleteBook(id)).build();
+    public Response deleteBook(@PathParam("id") Integer id) {
+        bookService.deleteBook(id);
+        return Response.ok().build();
     }
 
     @Override
@@ -70,22 +71,22 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @GET
     @Path("authors/{id}")
-    public AuthorFront getAuthor(@PathParam("id") String authorId) {
+    public AuthorFront getAuthor(@PathParam("id") Integer authorId) {
         return authorService.getAuthor(authorId);
     }
 
     @Override
     @POST
     @Path("authors")
-    public Response createAuthor(AuthorFront author) {
-        AuthorFront savedAuthor = authorService.createAuthor(author);
+    public Response addAuthor(AuthorFront author) {
+        AuthorFront savedAuthor = authorService.addAuthor(author);
         return Response.ok(savedAuthor).build();
     }
 
     @Override
     @PUT
     @Path("authors/{id}")
-    public Response updateAuthor(@PathParam("id") String id, AuthorFront author) {
+    public Response updateAuthor(@PathParam("id") Integer id, AuthorFront author) {
         AuthorFront returned = authorService.updateAuthor(id, author);
         return Response.ok(returned).build();
     }
@@ -93,7 +94,8 @@ public class RestLibraryAPI implements LibraryAPI {
     @Override
     @DELETE
     @Path("authors/{id}")
-    public Response deleteAuthor(@PathParam("id") String id) {
-        return Response.ok(authorService.deleteBook(id)).build();
+    public Response deleteAuthor(@PathParam("id") Integer id) {
+        authorService.deleteBook(id);
+        return Response.ok().build();
     }
 }

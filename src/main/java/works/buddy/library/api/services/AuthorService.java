@@ -7,11 +7,11 @@ public interface AuthorService {
 
     AuthorsFront getAuthors();
 
-    AuthorFront getAuthor(String authorId);
+    AuthorFront getAuthor(Integer authorId);
 
-    AuthorFront createAuthor(AuthorFront author);
+    AuthorFront addAuthor(AuthorFront author);
 
-    AuthorFront updateAuthor(String id, AuthorFront author);
+    AuthorFront updateAuthor(Integer id, AuthorFront author);
 
-    AuthorFront deleteBook(String id);
+    void deleteBook(Integer id);
 }

@@ -11,21 +11,21 @@ public interface LibraryAPI {
 
     BooksFront getBooks();
 
-    BookFront getBook(String bookId);
+    BookFront getBook(Integer bookId);
 
-    Response updateBook(String bookId, BookFront book);
+    Response updateBook(Integer bookId, BookFront book);
 
-    Response createBook(BookFront book);
+    Response addBook(BookFront book);
 
-    Response deleteBook(String id);
+    Response deleteBook(Integer id);
 
     AuthorsFront getAuthors();
 
-    AuthorFront getAuthor(String authorId);
+    AuthorFront getAuthor(Integer authorId);
 
-    Response createAuthor(AuthorFront author);
+    Response addAuthor(AuthorFront author);
 
-    Response updateAuthor(String id, AuthorFront author);
+    Response updateAuthor(Integer id, AuthorFront author);
 
-    Response deleteAuthor(String id);
+    Response deleteAuthor(Integer id);
 }

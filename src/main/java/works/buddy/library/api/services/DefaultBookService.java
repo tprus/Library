@@ -16,13 +16,13 @@ public class DefaultBookService extends AbstractDefaultService implements BookSe
     }
 
     @Override
-    public BookFront getBook(String id) {
+    public BookFront getBook(Integer id) {
         validateBookId(id);
-        return getBookFront(bookDAO.findOne(Integer.valueOf(id)));
+        return getBookFront(bookDAO.findOne(id));
     }
 
     @Override
-    public BookFront createBook(BookFront bookFront) {
+    public BookFront addBook(BookFront bookFront) {
         validateBookFront(bookFront);
         Book book = getBook(bookFront);
         book.setAuthor(authorDAO.findOne(bookFront.getAuthor().getId()));
@@ -31,20 +31,19 @@ public class DefaultBookService extends AbstractDefaultService implements BookSe
     }
 
     @Override
-    public BookFront updateBook(String bookId, BookFront bookFront) {
+    public BookFront updateBook(Integer bookId, BookFront bookFront) {
         validateUpdateBookFront(bookId, bookFront);
-        Book book = bookDAO.findOne(Integer.valueOf(bookId));
+        Book book = bookDAO.findOne(bookId);
         book.setAuthor(authorDAO.findOne(bookFront.getAuthor().getId()));
         book.setTitle(bookFront.getTitle());
         return getBookFront(book);
     }
 
     @Override
-    public BookFront deleteBook(String id) {
+    public void deleteBook(Integer id) {
         validateBookId(id);
-        Book returnedObject = bookDAO.findOne(Integer.valueOf(id));
+        Book returnedObject = bookDAO.findOne(id);
         bookDAO.delete(returnedObject);
-        return getBookFront(returnedObject);
     }
 
 }

@@ -7,11 +7,11 @@ public interface BookService {
 
     BooksFront getBooks();
 
-    BookFront getBook(String id);
+    BookFront getBook(Integer id);
 
-    BookFront createBook(BookFront book);
+    BookFront addBook(BookFront book);
 
-    BookFront updateBook(String bookId, BookFront book);
+    BookFront updateBook(Integer bookId, BookFront book);
 
-    BookFront deleteBook(String id);
+    void deleteBook(Integer id);
 }
