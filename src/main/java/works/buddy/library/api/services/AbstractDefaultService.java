@@ -2,7 +2,6 @@ package works.buddy.library.api.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import works.buddy.library.api.ApiConstants;
 import works.buddy.library.api.errors.BadRequestException;
 import works.buddy.library.api.errors.NotFoundException;
@@ -19,8 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public abstract class AbstractDefaultService {
-    @Value("${not.found.id}")
-    String notFoundId;
+
     @Autowired
     @Qualifier("hibernateBookDAO")
     protected BookDAO bookDAO;
@@ -66,7 +64,7 @@ public abstract class AbstractDefaultService {
         }
         Author author = authorDAO.findOne(id);
         if (author == null) {
-            throw new NotFoundException(String.format(notFoundId,id));
+            throw new NotFoundException(1, new Object[]{"author",id});
         }
     }
 
@@ -97,7 +95,7 @@ public abstract class AbstractDefaultService {
         }
         Book book = bookDAO.findOne(id);
         if (book == null) {
-            throw new NotFoundException(notFoundId);
+            throw new NotFoundException(1, new Object[]{"book", id});
         }
     }
 
@@ -119,7 +117,7 @@ public abstract class AbstractDefaultService {
             throw new BadRequestException("'author.id' is required");
         }
         if (authorDAO.findOne(author.getId()) == null) {
-            throw new NotFoundException("Author with such id cannot be found");
+            throw new NotFoundException(1, new Object[]{"author", author.getId()});
         }
     }
 

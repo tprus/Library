@@ -1,7 +1,16 @@
 package works.buddy.library.api.errors;
 
-public class BadRequestException extends RuntimeException{
+import works.buddy.library.api.services.MessagesService;
+
+import java.text.MessageFormat;
+
+public class BadRequestException extends RuntimeException {
+
     public BadRequestException(String message) {
         super(message);
+    }
+
+    public BadRequestException(Integer messageCode, Object parameter) {
+        super(MessageFormat.format(MessagesService.getMessage(messageCode), parameter));
     }
 }
