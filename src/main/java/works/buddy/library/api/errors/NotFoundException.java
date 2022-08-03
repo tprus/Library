@@ -6,7 +6,7 @@ import java.text.MessageFormat;
 
 public class NotFoundException extends RuntimeException {
 
-    public NotFoundException(Integer messageCode, Object[] parameter) {
-        super(MessageFormat.format(MessagesService.getMessage(messageCode), parameter));
+    public NotFoundException(Integer messageCode, Object... params) {
+        super(MessageFormat.format(MessagesService.getMessage(messageCode), params));
     }
 }

@@ -60,64 +60,64 @@ public abstract class AbstractDefaultService {
 
     protected void validateAuthorId(Integer id) {
         if (id == null) {
-            throw new BadRequestException("'id' is required");
+            throw new BadRequestException(2,"id");
         }
         Author author = authorDAO.findOne(id);
         if (author == null) {
-            throw new NotFoundException(1, new Object[]{"author",id});
+            throw new NotFoundException(1, "author",id);
         }
     }
 
     protected void validateAuthorFront(AuthorFront author) {
         if (author.getFirstName() == null) {
-            throw new BadRequestException("Authors 'firstName' is required");
+            throw new BadRequestException(2, "firstName");
         }
         if (author.getFirstName().length() < ApiConstants.MIN_NAME_LENGTH) {
-            throw new BadRequestException("Authors 'firstName' has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
+            throw new BadRequestException(3, "firstName", "longer", ApiConstants.MIN_NAME_LENGTH);
         }
         if (author.getFirstName().length() > ApiConstants.MAX_NAME_LENGTH) {
-            throw new BadRequestException("Authors 'firstName' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
+            throw new BadRequestException(3, "firstName", "shorter", ApiConstants.MAX_NAME_LENGTH);
         }
         if (author.getLastName() == null) {
-            throw new BadRequestException("Authors 'lastName' is required");
+            throw new BadRequestException(2, "lastName");
         }
         if (author.getLastName().length() < ApiConstants.MIN_NAME_LENGTH) {
-            throw new BadRequestException("Authors 'lastName' has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
+            throw new BadRequestException(3, "lastName", "longer", ApiConstants.MIN_NAME_LENGTH);
         }
         if (author.getLastName().length() > ApiConstants.MAX_NAME_LENGTH) {
-            throw new BadRequestException("Authors 'lastName' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
+            throw new BadRequestException(3, "lastName", "shorter", ApiConstants.MAX_NAME_LENGTH);
         }
     }
 
     protected void validateBookId(Integer id) {
         if (id == null) {
-            throw new BadRequestException("'id' is required");
+            throw new BadRequestException(2, "id");
         }
         Book book = bookDAO.findOne(id);
         if (book == null) {
-            throw new NotFoundException(1, new Object[]{"book", id});
+            throw new NotFoundException(1, "book", id);
         }
     }
 
     protected void validateBookFront(BookFront book) {
         if (book.getTitle() == null) {
-            throw new BadRequestException("'title' is required");
+            throw new BadRequestException(2,"title");
         }
         if (book.getTitle().length() < ApiConstants.MIN_NAME_LENGTH) {
-            throw new BadRequestException("'title' has to be longer than " + ApiConstants.MIN_NAME_LENGTH + " characters");
+            throw new BadRequestException(3,"title", "longer", ApiConstants.MIN_NAME_LENGTH);
         }
         if (book.getTitle().length() > ApiConstants.MAX_NAME_LENGTH) {
-            throw new BadRequestException("'title' has to be shorter than " + ApiConstants.MAX_NAME_LENGTH + " characters");
+            throw new BadRequestException(3, "title", "shorter", ApiConstants.MAX_NAME_LENGTH);
         }
         AuthorFront author = book.getAuthor();
         if (author == null) {
-            throw new BadRequestException("'author' is required");
+            throw new BadRequestException(2, "author");
         }
         if (author.getId() == null) {
-            throw new BadRequestException("'author.id' is required");
+            throw new BadRequestException(2, "id");
         }
         if (authorDAO.findOne(author.getId()) == null) {
-            throw new NotFoundException(1, new Object[]{"author", author.getId()});
+            throw new NotFoundException(1, "author", author.getId());
         }
     }
 

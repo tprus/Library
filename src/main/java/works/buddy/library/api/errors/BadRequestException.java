@@ -6,11 +6,7 @@ import java.text.MessageFormat;
 
 public class BadRequestException extends RuntimeException {
 
-    public BadRequestException(String message) {
-        super(message);
-    }
-
-    public BadRequestException(Integer messageCode, Object parameter) {
-        super(MessageFormat.format(MessagesService.getMessage(messageCode), parameter));
+    public BadRequestException(Integer messageCode, Object... params) {
+        super(MessageFormat.format(MessagesService.getMessage(messageCode), params));
     }
 }

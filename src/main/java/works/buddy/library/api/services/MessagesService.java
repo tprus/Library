@@ -40,15 +40,6 @@ public class MessagesService {
         return messages;
     }
 
-    @Deprecated
-    public static String getErrorMessage(Integer code) {
-        String errorMessage = messages.get(code);
-        if (errorMessage == null) {
-            return messages.get(999);
-        }
-        return errorMessage;
-    }
-
     public static String getMessage(Integer code, Object... arguments) {
         String message = messages.get(code);
         if (message == null) {
@@ -58,11 +49,4 @@ public class MessagesService {
         return MessageFormat.format(message, arguments);
     }
 
-    public String getMessagesPath() {
-        return messagesPath;
-    }
-
-    public void setMessagesPath(String messagesPath) {
-        this.messagesPath = messagesPath;
-    }
 }
