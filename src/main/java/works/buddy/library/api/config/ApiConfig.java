@@ -17,7 +17,7 @@ import java.util.List;
 @ComponentScan(basePackages = "works.buddy.library")
 public class ApiConfig {
 
-    @Value("${library.api.address}")
+    @Value("${api.address}")
     private String address;
 
     @Autowired
