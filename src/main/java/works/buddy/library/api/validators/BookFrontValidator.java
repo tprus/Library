@@ -35,7 +35,6 @@ public class BookFrontValidator {
         }
         AuthorFront author = book.getAuthor();
         if (author == null) {
-            System.out.println("elo");
             throw new BadRequestException(2, AUTHOR);
         }
         if (author.getId() == null) {
