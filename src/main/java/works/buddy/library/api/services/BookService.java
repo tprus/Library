@@ -11,7 +11,7 @@ public interface BookService {
 
     BookFront addBook(BookFront book);
 
-    BookFront updateBook(Integer bookId, BookFront book);
+    BookFront updateBook(BookFront book);
 
     void deleteBook(Integer id);
 }

@@ -2,6 +2,7 @@ package works.buddy.library.api.services;
 
 import works.buddy.library.api.view.AuthorFront;
 import works.buddy.library.api.view.AuthorsFront;
+import works.buddy.library.model.Author;
 
 public interface AuthorService {
 
@@ -11,7 +12,9 @@ public interface AuthorService {
 
     AuthorFront addAuthor(AuthorFront author);
 
-    AuthorFront updateAuthor(Integer id, AuthorFront author);
+    AuthorFront updateAuthor(AuthorFront author);
 
     void deleteBook(Integer id);
+
+    Author getAuthorOrException(Integer id);
 }

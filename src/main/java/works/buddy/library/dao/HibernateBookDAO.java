@@ -10,7 +10,7 @@ import works.buddy.library.model.Book;
 import java.util.Collection;
 
 @Repository
-public class HibernateBookDAO extends AbstractHibernateDAO<Book> implements BookDAO {
+public class HibernateBookDAO extends HibernateDAO<Book> implements BookDAO {
 
     private static final String ID = "id";
 

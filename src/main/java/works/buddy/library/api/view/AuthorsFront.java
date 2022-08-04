@@ -6,7 +6,7 @@ public class AuthorsFront {
 
     private Collection<AuthorFront> authors;
 
-    AuthorsFront() {
+    public AuthorsFront() {
     }
 
     public AuthorsFront(Collection<AuthorFront> authors) {

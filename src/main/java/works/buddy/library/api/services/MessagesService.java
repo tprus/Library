@@ -41,12 +41,7 @@ public class MessagesService {
     }
 
     public static String getMessage(Integer code, Object... arguments) {
-        String message = messages.get(code);
-        if (message == null) {
-            return messages.get(999);
-        }
-        message = message.replaceAll("'", "''");
-        return MessageFormat.format(message, arguments);
+        return MessageFormat.format(messages.get(code).replaceAll("'", "''"), arguments);
     }
 
 }
