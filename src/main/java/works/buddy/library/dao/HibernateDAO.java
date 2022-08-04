@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-public abstract class AbstractHibernateDAO<T extends Serializable> implements GenericDAO<T> {
+public abstract class HibernateDAO<T extends Serializable> implements GenericDAO<T> {
 
     protected DetachedCriteria createCriteria() {
         return DetachedCriteria.forClass(getEntityClass());

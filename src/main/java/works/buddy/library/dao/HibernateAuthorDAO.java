@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import works.buddy.library.model.Author;
 
 @Repository
-public class HibernateAuthorDAO extends AbstractHibernateDAO<Author> implements AuthorDAO {
+public class HibernateAuthorDAO extends HibernateDAO<Author> implements AuthorDAO {
 
     private static final String FIRST_NAME = "firstName";
 

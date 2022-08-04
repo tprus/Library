@@ -49,8 +49,8 @@ public class RestLibraryAPI implements LibraryAPI {
     @PUT
     @Path("books/{id}")
     public Response updateBook(@PathParam("id") Integer id, BookFront book) {
-        BookFront savedBookFront = bookService.updateBook(id, book);
-        return Response.ok(savedBookFront).build();
+        book.setId(id);
+        return Response.ok(bookService.updateBook(book)).build();
     }
 
     @Override
@@ -87,8 +87,8 @@ public class RestLibraryAPI implements LibraryAPI {
     @PUT
     @Path("authors/{id}")
     public Response updateAuthor(@PathParam("id") Integer id, AuthorFront author) {
-        AuthorFront returned = authorService.updateAuthor(id, author);
-        return Response.ok(returned).build();
+        author.setId(id);
+        return Response.ok(authorService.updateAuthor(author)).build();
     }
 
     @Override

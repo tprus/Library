@@ -24,13 +24,16 @@ public class LibraryConfig {
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
-        Resource[] resources = new ClassPathResource[]{new ClassPathResource("hibernate.properties"), new ClassPathResource("api.properties"),
-                new ClassPathResource("messages.properties")};
         PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
-        configurer.setLocations(resources);
+        configurer.setLocations(getResources());
         configurer.setNullValue("@null");
         configurer.setFileEncoding("UTF-8");
         configurer.setOrder(Ordered.LOWEST_PRECEDENCE);
         return configurer;
+    }
+
+    private static Resource[] getResources() {
+        return new ClassPathResource[]{new ClassPathResource("hibernate.properties"), new ClassPathResource("api.properties"),
+                new ClassPathResource("messages.properties")};
     }
 }
