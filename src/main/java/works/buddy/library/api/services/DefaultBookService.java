@@ -7,9 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import works.buddy.library.api.errors.NotFoundException;
 import works.buddy.library.api.view.BookFront;
 import works.buddy.library.api.view.BooksFront;
-import works.buddy.library.dao.AuthorDAO;
 import works.buddy.library.dao.BookDAO;
-import works.buddy.library.model.Author;
 import works.buddy.library.model.Book;
 
 import java.util.ArrayList;
