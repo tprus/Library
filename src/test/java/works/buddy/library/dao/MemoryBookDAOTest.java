@@ -56,13 +56,13 @@ public class MemoryBookDAOTest {
 
     @Test
     public void saveThrowingErrorWhenIdIsNull() {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(null, SAMPLE_NAME, SAMPLE_AUTHOR)));
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR)));
         assertEquals("Id is required", thrown.getMessage());
     }
 
     @Test
     public void saveThrowingErrorWhenTitleIsNull() {
-        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, null, null)));
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, SAMPLE_NAME, null)));
         assertEquals("Title is required", thrown.getMessage());
     }
 
