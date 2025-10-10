@@ -62,11 +62,6 @@ public class MemoryBookDAOTest {
 
     @Test
     public void saveThrowingErrorWhenTitleIsNull() {
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, null, null)));
         assertEquals("Title is required", thrown.getMessage());
     }
