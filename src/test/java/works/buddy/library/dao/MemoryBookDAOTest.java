@@ -88,7 +88,7 @@ public class MemoryBookDAOTest {
     public void saveThrowingErrorWhenAuthorLastNameIsNull() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> bookDAO.save(new Book(1, SAMPLE_NAME, new Author(SAMPLE_NAME, null))));
-        assertEquals("Author last name is required", thrown.getMessage());
+        assertEquals("Author last name is required2", thrown.getMessage());
     }
 
     @Test
