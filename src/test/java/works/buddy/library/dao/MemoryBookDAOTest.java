@@ -123,6 +123,6 @@ public class MemoryBookDAOTest {
     public void saveTwoSameBooks() {
         bookDAO.save(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR));
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () -> bookDAO.save(new Book(1, SAMPLE_NAME, SAMPLE_AUTHOR)));
-        assertEquals("Book with this id already existss", thrown.getMessage());
+        assertEquals("Book with this id already exists", thrown.getMessage());
     }
 }
