@@ -109,7 +109,7 @@ public class MemoryBookDAOTest {
     public void saveThrowingErrorWhenAuthorLastNameIsTooShort() {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> bookDAO.save(new Book(1, SAMPLE_NAME, new Author(SAMPLE_NAME, TOO_SHORT_NAME))));
-        assertEquals("Author last name cannot be shorter than 52 characters", thrown.getMessage());
+        assertEquals("Author last name cannot be shorter than 5 characters", thrown.getMessage());
     }
 
     @Test
